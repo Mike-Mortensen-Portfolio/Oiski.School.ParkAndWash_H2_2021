@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.ParkAndWash_H2_2021.Application", "Oiski.School.ParkAndWash_H2_2021.Application\Oiski.School.ParkAndWash_H2_2021.Application.csproj", "{34E0FDCD-D5D5-4586-8A58-E34D3DF87811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.ParkAndWash_H2_2021.Application", "Oiski.School.ParkAndWash_H2_2021.Application\Oiski.School.ParkAndWash_H2_2021.Application.csproj", "{34E0FDCD-D5D5-4586-8A58-E34D3DF87811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.ParkAndWash_H2_2021", "Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021.csproj", "{DC908528-FEFA-4C0F-BF04-5519D73CCC8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{34E0FDCD-D5D5-4586-8A58-E34D3DF87811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34E0FDCD-D5D5-4586-8A58-E34D3DF87811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34E0FDCD-D5D5-4586-8A58-E34D3DF87811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC908528-FEFA-4C0F-BF04-5519D73CCC8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC908528-FEFA-4C0F-BF04-5519D73CCC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC908528-FEFA-4C0F-BF04-5519D73CCC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC908528-FEFA-4C0F-BF04-5519D73CCC8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

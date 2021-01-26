@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.ParkAndWash">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAACCAA=</HashCode>
+      <FileName>ParkAndWash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingSpot" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAgAAAAAAABAAAAAAAAAAAAQAAAIAAAAA=</HashCode>
+      <FileName>Parking\ParkingSpot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingLot" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAACAAAAAQAAAAAAAAAAAAAAAAABAAAAAQAAAAA=</HashCode>
+      <FileName>Parking\ParkingLot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Factory">
+    <Position X="2.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.TicketRepository">
+    <Position X="2.25" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAABAAAAA=</HashCode>
+      <FileName>TicketRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.TicketService">
+    <Position X="7" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAQAABAAAAAAAACAAARAAAAAAAAA=</HashCode>
+      <FileName>TicketService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticket">
+    <Position X="7" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAIAAACAQAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ticket.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.Parking.IMyParkingHandler">
+    <Position X="9.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Parking\IMyParkingHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.Parking.IMyParkingSpot">
+    <Position X="9.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAgAAAAAAABAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Parking\IMyParkingSpot.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyRepository&lt;T&gt;">
+    <Position X="2.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAABAAAAA=</HashCode>
+      <FileName>IMyRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyService&lt;T&gt;">
+    <Position X="12" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAQAABAAAAAAAACAAABAAAAAAAAA=</HashCode>
+      <FileName>IMyService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyTicket">
+    <Position X="12" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAQAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IMyTicket.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Oiski.School.ParkAndWash_H2_2021.Parking.SpotType">
+    <Position X="4.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAACAAAI=</HashCode>
+      <FileName>Parking\SpotType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

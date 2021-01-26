@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021.csproj" />
+  </ItemGroup>
+
 </Project>
