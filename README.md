@@ -28,7 +28,8 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
 >**Full Path:** _Oiski/v1/1.0.0-Interface_MainMenu__
 
 ### Change Log
-No entry yet...
+- [v0.0.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.0.0)
+  - Setup of the base structure for the relationship between modules
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
