@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Oiski.School.ParkAndWash_H2_2021.TicketService
+namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 {
     internal class Ticket : IMyTicket
     {

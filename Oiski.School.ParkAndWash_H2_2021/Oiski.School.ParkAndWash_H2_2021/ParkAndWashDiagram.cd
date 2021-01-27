@@ -1,96 +1,119 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Oiski.School.ParkAndWash_H2_2021.ParkAndWash">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAACCAA=</HashCode>
+      <HashCode>ggAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIIIAAAQ=</HashCode>
       <FileName>ParkAndWash.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingSpot" BaseTypeListCollapsed="true">
-    <Position X="4.75" Y="3.75" Width="2" />
+    <Position X="15.25" Y="12.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAgAAAAAAABAAAAAAAAAAAAQAAAIAAAAA=</HashCode>
       <FileName>Parking\ParkingSpot.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingLot" BaseTypeListCollapsed="true">
-    <Position X="4.75" Y="0.5" Width="2" />
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingService" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="5.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAACAAAAAQAAAAAAAAAAAAAAAAABAAAAAQAAAAA=</HashCode>
-      <FileName>Parking\ParkingLot.cs</FileName>
+      <HashCode>AAAAACAgAAAACAAEAIgAAAAAAAAAQAgAAAAIAAAgAAg=</HashCode>
+      <FileName>Parking\ParkingService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Factory">
-    <Position X="2.25" Y="0.5" Width="2" />
+    <Position X="4" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAIAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAIAAAAA=</HashCode>
       <FileName>Factory.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.TicketRepository">
-    <Position X="2.25" Y="4.75" Width="2" />
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.TicketService">
+    <Position X="18.5" Y="5.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAABAAAAA=</HashCode>
-      <FileName>TicketRepository.cs</FileName>
+      <HashCode>AAAAACAgAAAACAAEAIgAAAAAAAAAQAgAAAAIAAAgAAg=</HashCode>
+      <FileName>Ticketing\TicketService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.TicketService">
-    <Position X="7" Y="0.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAQAABAAAAAAAACAAARAAAAAAAAA=</HashCode>
-      <FileName>TicketService.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticket">
-    <Position X="7" Y="3.75" Width="2.25" />
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.Ticket">
+    <Position X="18.5" Y="12.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAIAAACAQAAQAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Ticket.cs</FileName>
+      <FileName>Ticketing\Ticket.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Oiski.School.ParkAndWash_H2_2021.Parking.IMyParkingHandler">
-    <Position X="9.75" Y="0.5" Width="2" />
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.TicketRepository">
+    <Position X="8" Y="3" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAQAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
-      <FileName>Parking\IMyParkingHandler.cs</FileName>
+      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAABAAAAA=</HashCode>
+      <FileName>Ticketing\TicketRepository.cs</FileName>
     </TypeIdentifier>
-  </Interface>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingRepository">
+    <Position X="11" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAABAAAAA=</HashCode>
+      <FileName>Parking\ParkingRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Parking.IMyParkingSpot">
-    <Position X="9.75" Y="3.75" Width="2" />
+    <Position X="15.25" Y="10.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAgAAAAAAABAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Parking\IMyParkingSpot.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyRepository&lt;T&gt;">
-    <Position X="2.25" Y="2.5" Width="2" />
+    <Position X="9.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAABAAAAA=</HashCode>
       <FileName>IMyRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyService&lt;T&gt;">
-    <Position X="12" Y="0.5" Width="2.25" />
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyServiceHandler">
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAQAABAAAAAAAACAAABAAAAAAAAA=</HashCode>
-      <FileName>IMyService.cs</FileName>
+      <HashCode>gAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIAAAAAQ=</HashCode>
+      <FileName>ServiceSystem\IMyServiceHandler.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyTicket">
-    <Position X="12" Y="3.75" Width="2.25" />
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyServiceBase">
+    <Position X="15.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>ServiceSystem\IMyServiceBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyServiceItemCollection&lt;T&gt;">
+    <Position X="18.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAIAAAAAAAAAAQAgAAAAAAAAAAAg=</HashCode>
+      <FileName>ServiceSystem\IMyServiceItemCollection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyService&lt;T&gt;">
+    <Position X="17" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAEAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>ServiceSystem\IMyService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.IMyTicket">
+    <Position X="18.5" Y="10.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAIAAAAAQAAQAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IMyTicket.cs</FileName>
+      <FileName>Ticketing\IMyTicket.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Oiski.School.ParkAndWash_H2_2021.Parking.SpotType">
-    <Position X="4.75" Y="6.75" Width="2" />
+    <Position X="15.25" Y="15.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAACAAAI=</HashCode>
       <FileName>Parking\SpotType.cs</FileName>

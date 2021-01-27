@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Oiski.School.ParkAndWash_H2_2021
 {
-    public interface IMyRepository <T>
+    public interface IMyRepository<T>
     {
         IEnumerable<T> GetEnumerable ();
         T GetDataByIdentifier<IDType> (IDType _identifier);

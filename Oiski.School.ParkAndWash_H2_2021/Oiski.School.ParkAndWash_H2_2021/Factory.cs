@@ -1,27 +1,33 @@
-﻿using Oiski.School.ParkAndWash_H2_2021.Parking;
+﻿using System;
+using Oiski.School.ParkAndWash_H2_2021.Parking;
+using Oiski.School.ParkAndWash_H2_2021.Ticketing;
 
 namespace Oiski.School.ParkAndWash_H2_2021
 {
     public static class Factory
     {
-        public static IMyParkingHandler CreateParkingHandler ()
+        public static IMyService<IMyParkingSpot> CreateParkingService ()
         {
-            return new ParkingLot();
+            //  Create new instance of ParkingService class
+            throw new NotImplementedException();
         }
 
         public static IMyService<IMyTicket> CreateTicketService ()
         {
-            return new TicketService();
+            //  Create new instance of TicketService class
+            throw new NotImplementedException();
         }
 
-        public static IMyParkingSpot CreateParkingSpot ()
+        public static IMyParkingSpot CreateParkingSpot (SpotType _type)
         {
-            return new ParkingSpot();
+            //  Create new instance of ParkingSpot (_type) class
+            throw new NotImplementedException();
         }
 
         public static IMyTicket CreateTicket (int _parkingSpotID, decimal _pricePrHour)
         {
-            return new Ticket(_parkingSpotID, _pricePrHour);
+            //  Create new instance of Ticket (_parkingSpotID, _pricePrHour) class
+            throw new NotImplementedException();
         }
     }
 }

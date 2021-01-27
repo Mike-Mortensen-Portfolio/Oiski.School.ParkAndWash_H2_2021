@@ -1,34 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Oiski.School.ParkAndWash_H2_2021.Parking;
-using Oiski.School.ParkAndWash_H2_2021.Customers;
+using Oiski.School.ParkAndWash_H2_2021.Ticketing;
 
 namespace Oiski.School.ParkAndWash_H2_2021
 {
-    public sealed class ParkAndWash
+    public sealed class ParkAndWash : IMyServiceHandler
     {
-        private static ParkAndWash service;
-        public static ParkAndWash Service
+        private ParkAndWash ()
+        {
+            services = new List<IMyServiceBase>();
+        }
+
+        private static ParkAndWash serviceHandler;
+        public static ParkAndWash ServiceHandler
         {
             get
             {
-                if ( service == null )
+                if ( serviceHandler == null )
                 {
-                    service = new ParkAndWash(Factory.CreateParkingHandler(), Factory.CreateTicketService());
+                    serviceHandler = new ParkAndWash();
                 }
 
-                return service;
+                return serviceHandler;
             }
         }
-        public IMyParkingHandler ParkingService { get; }
 
-        public IMyService<IMyTicket> TicketService { get; }
-
-        private ParkAndWash (IMyParkingHandler _parkingHandler, IMyService<IMyTicket> _ticketService)
+        private readonly List<IMyServiceBase> services;
+        public IReadOnlyList<IMyServiceBase> Services
         {
-            ParkingService = _parkingHandler;
-            TicketService = _ticketService;
+            get
+            {
+                return services;
+            }
+        }
+
+        public IMyServiceBase this[string _serviceID]
+        {
+            get
+            {
+                return services.Find(service => service.ServiceID == _serviceID);
+            }
+        }
+
+        public void InjectService (IMyServiceBase _service)
+        {
+            //   Inject Service
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveService (IMyServiceBase _service)
+        {
+            //   Remove Service
+            throw new NotImplementedException();
+        }
+
+        public T GetServiceAs<T> (string _serviceID)
+        {
+            //   Convert base Service to <T>
+            throw new NotImplementedException();
         }
     }
 }
