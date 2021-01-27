@@ -30,6 +30,9 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
 ### Change Log
 - [v0.0.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.0.0)
   - Setup of the base structure for the relationship between modules
+- [v0.0.0-Rework](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.0.0-Rework)
+  - Reworked the core structure for the relationship between core modules and how they will interact with eachother. \
+    The new structure allows for completely generic service system modules, which can be injected into the main flow of the program without rebuilding the core structure.
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
