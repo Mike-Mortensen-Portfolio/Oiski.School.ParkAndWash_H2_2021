@@ -59,6 +59,12 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - ability to find a collection of Tickets based on Predicate
     - Ability to Validate Tickets
     - Ability to change Service ID
+- [v0.4.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.4.0)
+  - Implemented `Factory`
+    - Ability to create Parking Services
+    - Ability to create Ticket Services
+    - Ability to create Parking Spots
+    - Ability to create Tickets
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
