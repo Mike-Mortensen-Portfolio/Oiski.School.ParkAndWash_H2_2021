@@ -49,6 +49,16 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to Change Service ID
   - Changes to ParkAndWash
     - Ability to convert generic types
+- [v0.3.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.3.0)
+  - Implemented `TicketService`
+    - Ability to store Tickets
+    - Ability to Ad/Remove Tickets from collection
+    - Ability to generate Tickets for occupations
+    - Ability to Cancel/Destroy Tickets of occupations
+    - Ability to Find Ticket based on Predicate
+    - ability to find a collection of Tickets based on Predicate
+    - Ability to Validate Tickets
+    - Ability to change Service ID
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
