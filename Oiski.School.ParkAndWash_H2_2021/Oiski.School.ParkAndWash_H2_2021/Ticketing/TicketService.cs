@@ -52,7 +52,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             throw new NotImplementedException();
         }
 
-        public bool ValidateServiceitem<IDType> (IDType _itemID)
+        public bool ValidateServiceItem<IDType> (IDType _itemID)
         {
             throw new NotImplementedException();
         }
