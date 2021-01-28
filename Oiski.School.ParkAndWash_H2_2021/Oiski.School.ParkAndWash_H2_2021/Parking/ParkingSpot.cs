@@ -8,6 +8,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
     {
         protected static int lotCount = 0;
 
+        internal ParkingSpot ()
+        {
+
+        }
+
         public ParkingSpot (SpotType _type)
         {
             ID = ++lotCount;

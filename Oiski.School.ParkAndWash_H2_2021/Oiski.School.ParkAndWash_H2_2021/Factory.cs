@@ -36,6 +36,10 @@ namespace Oiski.School.ParkAndWash_H2_2021
         {
             return new ParkingSpot(_type);
         }
+        internal static IMyParkingSpot CreateDefaultParkingSpot ()
+        {
+            return new ParkingSpot();
+        }
 
         /// <summary>
         /// 
