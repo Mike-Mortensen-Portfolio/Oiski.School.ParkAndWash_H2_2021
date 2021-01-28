@@ -4,30 +4,48 @@ using Oiski.School.ParkAndWash_H2_2021.Ticketing;
 
 namespace Oiski.School.ParkAndWash_H2_2021
 {
+    /// <summary>
+    /// An <see langword="object"/> that contains factorial functionality related to the instantiations of other <see langword="objects"/>
+    /// </summary>
     public static class Factory
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>A new instance of <see cref="IMyService{T}"/> where T is an <see cref="IMyParkingSpot"/></returns>
         public static IMyService<IMyParkingSpot> CreateParkingService ()
         {
-            //  Create new instance of ParkingService class
-            throw new NotImplementedException();
+            return new ParkingService();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>A new instance of <see cref="IMyService{T}"/> where T is an <see cref="IMyTicket"/></returns>
         public static IMyService<IMyTicket> CreateTicketService ()
         {
-            //  Create new instance of TicketService class
-            throw new NotImplementedException();
+            return new TicketService();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_type"></param>
+        /// <returns>A new instance of <see cref="IMyParkingSpot"/> where the type is <paramref name="_type"/></returns>
         public static IMyParkingSpot CreateParkingSpot (SpotType _type)
         {
-            //  Create new instance of ParkingSpot (_type) class
-            throw new NotImplementedException();
+            return new ParkingSpot(_type);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_parkingSpotID"></param>
+        /// <param name="_pricePrHour"></param>
+        /// <returns>A new instance of <see cref="IMyTicket"/> with a linked <see cref="IMyParkingSpot"/>.</returns>
         public static IMyTicket CreateTicket (int _parkingSpotID, decimal _pricePrHour)
         {
-            //  Create new instance of Ticket (_parkingSpotID, _pricePrHour) class
-            throw new NotImplementedException();
+            return new Ticket(_parkingSpotID, _pricePrHour);
         }
     }
 }
