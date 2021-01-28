@@ -51,5 +51,9 @@ namespace Oiski.School.ParkAndWash_H2_2021
         {
             return new Ticket(_parkingSpotID, _pricePrHour);
         }
+        internal static IMyTicket CreateDefaultTicket ()
+        {
+            return new Ticket();
+        }
     }
 }
