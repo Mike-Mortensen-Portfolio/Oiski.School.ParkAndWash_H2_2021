@@ -8,6 +8,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
     {
         protected static int ticketCount = 0;
 
+        internal Ticket ()
+        {
+
+        }
+
         public Ticket (int _parkingSpotID, decimal _pricePrHour)
         {
             ID = ++ticketCount;
@@ -16,8 +21,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             OccupationPricePrHour = _pricePrHour;
         }
 
-        public int ParkingSpotID { get; }
-        public int ID { get; }
+        public int ParkingSpotID { get; set; }
+        public int ID { get; set; }
         public DateTime OccupationStamp { get; set; }
         public decimal OccupationPricePrHour { get; set; }
     }
