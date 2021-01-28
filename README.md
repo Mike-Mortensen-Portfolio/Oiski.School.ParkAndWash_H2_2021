@@ -15,7 +15,7 @@ The assignments states that the following criteria:
 **Output**
 > Description needed...
 
-See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.VO2Number_H2_2021/wiki) for more in depth information about the project.
+See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/wiki) for more in depth information about the project.
 
 ## Versioning
 The Assignment specifies that versioning should be done according to the following template: [_Major_].[_Minor_].[_Path_].\
