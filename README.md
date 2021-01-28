@@ -34,9 +34,21 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
   - Reworked the core structure for the relationship between core modules and how they will interact with eachother. \
     The new structure allows for completely generic service system modules, which can be injected into the main flow of the program without rebuilding the core structure.
 - [v0.1.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.1.0)
-  - Implemented ServiceHandler
+  - Implemented `ServiceHandler`
     - Ability to inject/remove services
     - Ability to convert IMyServiceBase to any convertable type
+- [v0.2.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.2.0)
+  - Implemented `ParkingService`
+    - Ability to Store Parking Spots
+    - Ability to Add/Remove Parking Spots from collection
+    - Ability to Occupie Parking Spot
+    - Ability to Cancel Occupation of Parking Spot
+    - Ability to find Parking Spot based on Predicate
+    - Ability to find a collection of Parking Spots based on Predicate
+    - Ability to Validate Parking Spot
+    - Ability to Change Service ID
+  - Changes to ParkAndWash
+    - Ability to convert generic types
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
