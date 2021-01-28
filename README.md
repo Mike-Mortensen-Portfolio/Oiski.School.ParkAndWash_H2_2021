@@ -81,7 +81,8 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to collect an enumerable object of Tickets in storage
   - Changes to Factory
     - Ability to create default `Ticket` instance
-
+- [v0.6.1](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.6.1)
+  - Added summaries
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
