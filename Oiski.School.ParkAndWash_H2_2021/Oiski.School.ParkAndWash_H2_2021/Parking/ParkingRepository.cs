@@ -12,6 +12,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
     /// </summary>
     public sealed class ParkingRepository : IMyRepository<IMyParkingSpot>
     {
+        /// <summary>
+        /// Creates a new instance of type <see cref="ParkingRepository"/>
+        /// </summary>
         private ParkingRepository ()
         {
             if ( !File.Exists(filePath) )

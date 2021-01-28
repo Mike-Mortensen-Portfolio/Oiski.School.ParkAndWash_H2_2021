@@ -4,15 +4,26 @@ using System.Text;
 
 namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 {
+    /// <summary>
+    /// Defines a Ticket
+    /// </summary>
     internal class Ticket : IMyTicket
     {
         protected static int ticketCount = 0;
 
+        /// <summary>
+        /// Creates a new instance of type <see cref="Ticket"/>
+        /// </summary>
         internal Ticket ()
         {
 
         }
 
+        /// <summary>
+        /// Creates a new instance of type <see cref="Ticket"/> where the parking spot ID and hourly parking cost is set
+        /// </summary>
+        /// <param name="_parkingSpotID"></param>
+        /// <param name="_pricePrHour"></param>
         public Ticket (int _parkingSpotID, decimal _pricePrHour)
         {
             ID = ++ticketCount;
@@ -21,9 +32,18 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             OccupationPricePrHour = _pricePrHour;
         }
 
+        /// <summary>
+        /// The ID of the <see cref="Parking.IMyParkingSpot"/> attached to this <see cref="IMyTicket"/>
+        /// </summary>
         public int ParkingSpotID { get; set; }
         public int ID { get; set; }
+        /// <summary>
+        /// The exact timestamp for when this <see cref="IMyTicket"/> was generated
+        /// </summary>
         public DateTime OccupationStamp { get; set; }
+        /// <summary>
+        /// The cost for occupating an <see cref="Parking.IMyParkingSpot"/> fo a hour
+        /// </summary>
         public decimal OccupationPricePrHour { get; set; }
     }
 }
