@@ -57,16 +57,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <returns><see langword="true"/> if the <see cref="IMyTicket"/> exists and could be canceled; Otherwise <see langword="false"/></returns>
         public bool CancelServiceItem<IDType> (IDType _itemID)
         {
-            if ( ValidateServiceItem(_itemID) )
-            {
-                IMyTicket ticket = FindServiceItem(ticket => ticket.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID));
+            IMyTicket ticket = FindServiceItem(ticket => ticket.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID));
 
-                RemoveServiceItem(ticket);
-
-                return true;
-            }
-
-            return false;
+            return RemoveServiceItem(ticket);
         }
 
         /// <summary>
@@ -107,7 +100,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         }
 
         /// <summary>
-        /// Request a <see cref="IMyTicket"/> for 
+        /// Generate an <see cref="IMyTicket"/> for an occupation of the <see cref="Parking.IMyParkingSpot"/> attached to the <see langword="int"/> ID <paramref name="_value"/>
         /// </summary>
         /// <typeparam name="ValueType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_value">The <see langword="int"/> ID <see langword="value"/> of the requested <see cref="Parking.IMyParkingSpot"/></param>
