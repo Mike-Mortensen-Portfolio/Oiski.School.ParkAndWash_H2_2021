@@ -8,6 +8,6 @@ namespace Oiski.School.ParkAndWash_H2_2021
     {
         T RequestServiceItem<ValueType> (ValueType _value);
         bool CancelServiceItem<IDType> (IDType _itemID);
-        bool ValidateServiceitem<IDType> (IDType _itemID);
+        bool ValidateServiceItem<IDType> (IDType _itemID);
     }
 }
