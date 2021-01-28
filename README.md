@@ -71,6 +71,16 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to update Parking Spots in storage
     - Ability to delete Parking Spots in storage
     - Ability to collect an enumerable object of Parking Spots in storage
+  - Changes to Factory
+    - Ability to create default `ParkingSpot` instance
+- [v0.6.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.6.0)
+  - Implemented `TicketRepository`
+    - Ability to insert Tickets in storage
+    - Ability to update Tickets in storage
+    - Ability to delete Tickets in storage
+    - Ability to collect an enumerable object of Tickets in storage
+  - Changes to Factory
+    - Ability to create default `Ticket` instance
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
