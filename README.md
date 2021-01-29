@@ -120,6 +120,16 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to create default `Ticket` instance
 - [v0.6.1](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.6.1)
   - Added summaries
+- [v0.7.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.7.0)
+  - This version contains _errors_ that are logged and will be _fixed_ along with the extension of the repository system in _v0.8.0_
+  - Extended Ticket System
+    - Reworked the ticketing system to be more scalable
+    - Added `IMyParkingTicket` interface
+    - Replaced `Ticket` class with `ParkingTicket` class to seperate parking tickets from future car wash tickets
+    - Added `ParkingChargeTicket` class
+    - Added `ParkingWashTicket` class
+    - Added `ParkingServiceTicket` class
+
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
