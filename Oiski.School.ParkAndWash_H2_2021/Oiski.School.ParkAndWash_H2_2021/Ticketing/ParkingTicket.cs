@@ -6,9 +6,9 @@ using System.Text;
 namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 {
     /// <summary>
-    /// Defines a Ticket
+    /// Defines a basic <see cref="IMyTicket"/> for an <see cref="Parking.IMyParkingSpot"/>
     /// </summary>
-    internal class ParkingTicket : IMyTicket, IMyRepositoryEntity<int, string>
+    internal class ParkingTicket : IMyParkingTicket, IMyRepositoryEntity<int, string>
     {
         protected static int ticketCount = 0;
 
@@ -21,7 +21,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         }
 
         /// <summary>
-        /// Creates a new instance of type <see cref="ParkingTicket"/> where the parking spot ID and hourly parking cost is set
+        /// Creates a new instance of type <see cref="ParkingTicket"/> where the <paramref name="_parkingSpotID"/> and <paramref name="_pricePrHour"/> is set
         /// </summary>
         /// <param name="_parkingSpotID"></param>
         /// <param name="_pricePrHour"></param>
@@ -48,20 +48,19 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         public decimal OccupationPricePrHour { get; set; }
 
         /// <summary>
-        /// 
+        /// Save the current state of the <see cref="ParkingTicket"/>
         /// </summary>
-        /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
-        public string SaveEntity ()
+        /// <returns>The current state of <see langword="this"/> <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> as an instance of type <typeparamref name="SaveType"/></returns>
+        public virtual string SaveEntity ()
         {
             return $"{ID},{OccupationStamp},{OccupationPricePrHour},{ParkingSpotID}";
         }
 
         /// <summary>
-        /// Rebuild <see langword="this"/> instance based on the passed in <see langword="string"/> <paramref name="_values"/>
+        /// Restore a previous state of the <see cref="ParkingTicket"/> based on the passed in <typeparamref name="SaveType"/> <see langword="value"/>
         /// </summary>
-        /// <param name="_values"></param>
-        /// <exception cref="InvalidDataException"></exception>
-        public void BuildEntity (string _values)
+        /// <param name="_data"></param>
+        public virtual void BuildEntity (string _values)
         {
             string[] values = _values.Split(",");
 
@@ -76,6 +75,57 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             {
                 throw new InvalidDataException($"One or more fields couldn't be retrieved from: {_values}");
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>An <see cref="Array"/> of <see cref="KeyValuePair{TKey, TValue}"/> <see langword="objects"/> where <strong>key</strong> is the property name in <i>PascalCase</i></returns>
+        public virtual KeyValuePair<string, object>[] GetTicketProperties ()
+        {
+            KeyValuePair<string, object>[] properties =
+            {
+                KeyValuePair.Create ( "ParkingSpotID",(object)ParkingSpotID),
+                KeyValuePair.Create ( "OccupationStamp",(object)OccupationStamp),
+                KeyValuePair.Create ( "OccupationPricePrHour",(object)OccupationPricePrHour)
+            };
+
+            return properties;
+        }
+
+        /// <summary>
+        /// Set the <see langword="value"/> of a property
+        /// </summary>
+        /// <param name="_propertyName">The property name in <i>PascalCase</i></param>
+        /// <param name="_value">The <see langword="value"/> to assign the property</param>
+        public virtual void SetProperty (string _propertyName, object _value)
+        {
+            object property = null;
+            try
+            {
+                switch ( _propertyName )
+                {
+                    case "ParkingSpotID":
+                        property = ParkingSpotID;
+                        ParkingSpotID = ( int ) _value;
+                        break;
+                    case "OccupationStamp":
+                        property = OccupationStamp;
+                        OccupationStamp = ( DateTime ) _value;
+                        break;
+                    case "OccupationPricePrHour":
+                        property = OccupationPricePrHour;
+                        OccupationPricePrHour = ( decimal ) _value;
+                        break;
+                    default:
+                        throw new PropertyNotFoundException<IMyParkingTicket>(GetTicketProperties());
+                }
+            }
+            catch ( InvalidCastException _e )
+            {
+                throw new InvalidCastException($"Invalid Property Value: type of ({property})<{property.GetType()}> is not equal to type of ({_value})<{_value.GetType()}>", _e);
+            }
+
         }
     }
 }

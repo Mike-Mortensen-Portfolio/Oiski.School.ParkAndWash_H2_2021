@@ -90,7 +90,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
                 string line = file.ReadLine();
                 if ( !string.IsNullOrWhiteSpace(line) && line.Contains(ParkAndWash.ConvertGeneric<IDType, int>(_id).ToString()) )
                 {
-                    IMyTicket ticket = Factory.CreateDefaultTicket();
+                    IMyTicket ticket = Factory.CreateDefaultParkingTicket();
                     ( ( IMyRepositoryEntity<int, string> ) ticket ).BuildEntity(line);
                     return ticket;
                 }
@@ -110,7 +110,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 
             using ( StreamReader file = new StreamReader(filePath) )
             {
-                IMyRepositoryEntity<int, string> ticket = Factory.CreateDefaultTicket() as IMyRepositoryEntity<int, string>;
+                IMyRepositoryEntity<int, string> ticket = Factory.CreateDefaultParkingTicket() as IMyRepositoryEntity<int, string>;
                 ticket.BuildEntity(file.ReadLine());
 
                 tickets.Add(ticket as IMyTicket);
