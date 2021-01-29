@@ -3,6 +3,43 @@
 ## About The Project
 This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments.
 
+### Terms of Development
+`Park 'N Wash` needs us to build a system that can keep track of parking arrangements and is open for further extensions if necessary.
+The program must make use of tickets to keep track of said arrangements by having a client _Check in ->
+Get Ticket. Check Out; Bill Ticket_ and display the information back to the client.
+The price of the _Bill_ is based on _how long_ the clients occupates a parking Spot and _which type_ of parking spot
+the occupation involves.
+
+`Park'N Wash` plans on extending their services to include 3 car wash facilities, which must be kept in mind under development.
+
+- **Specifications**
+  - **Parking**
+    - 50 Standard Parking Spots
+    - 10 Utility Parking Spots
+    - 12 Large Parking Spots
+    - 5 Handicap Parking Spots
+    - Only one client can occupy a spot at a time.
+  - **Car Wash**
+    - Specs to come...
+- **Ticket System**
+  - **Parking**
+    - A Basic Ticket
+    - A Ticket for parking spots that include charge stations
+    - A Ticket that includes a car wash
+    - A Ticket that includes a service check (_If a clients parking arrangements extends to at least 48 hours_)
+  - **Car Wash**
+    - Specs to come...
+- **Data Storage**
+  - The initial storage arrangement is agreed to be `.csv` files.
+    - **Files**
+      - `ParkingSpots.csv`
+      - `Tickets.csv`
+  - The storage arrangement may change, so in that regard the program must be open for such an event.
+    in the we store data.
+- **Interface**
+  - No specific requirements about layout
+  - Must be able to show a client the amout of available parking spots within each type of spot.
+
 ## The program
 The assignments states that the following criteria:
 
