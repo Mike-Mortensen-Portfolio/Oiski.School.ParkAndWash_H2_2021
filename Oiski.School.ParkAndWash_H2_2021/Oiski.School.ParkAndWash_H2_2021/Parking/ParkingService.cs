@@ -39,6 +39,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// Add an <see cref="IMyParkingSpot"/> item to the collection
         /// </summary>
         /// <param name="_item"></param>
+        /// <exception cref="ServiceDuplicateException"></exception>
         public void AddServiceItem (IMyParkingSpot _item)
         {
             if ( items.Find(spot => spot.ID == _item.ID) != null )
@@ -113,6 +114,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <typeparam name="ValueType">Must be a <see cref="SpotType"/> <see langword="value"/></typeparam>
         /// <param name="_value">The <see cref="SpotType"/> <see langword="value"/> of the requested <see cref="IMyParkingSpot"/></param>
         /// <returns>An <see cref="IMyParkingSpot"/> that is not occupied and matches the <see cref="SpotType"/> <paramref name="_value"/>; Otherwise <see langword="null"/></returns>
+        /// <exception cref="InvalidCastException"></exception>
         public IMyParkingSpot RequestServiceItem<ValueType> (ValueType _value)
         {
             return FindServiceItem(spot => spot.Type == ParkAndWash.ConvertGeneric<ValueType, SpotType>(_value) && spot.Occupied == false);
@@ -123,7 +125,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_itemID">The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyParkingSpot"/></param>
-        /// <returns></returns>
+        /// <returns><see langword="true"/> if an <see langword="object"/> that matches the <paramref name="_itemID"/> is found; otherwise <see langword="false"/></returns>
+        /// <exception cref="InvalidCastException"></exception>
         public bool ValidateServiceItem<IDType> (IDType _itemID)
         {
             if ( FindServiceItem(spot => spot.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID)) != null )

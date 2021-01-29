@@ -25,6 +25,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// Creates a new instance of type <see cref="ParkingSpot"/> where the <see cref="SpotType"/> is set
         /// </summary>
         /// <param name="_type"></param>
+        /// <exception cref="OverflowException"></exception>
         public ParkingSpot (SpotType _type)
         {
             ID = ++lotCount;

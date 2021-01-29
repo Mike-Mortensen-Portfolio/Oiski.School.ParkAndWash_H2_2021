@@ -66,6 +66,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// Inject a <see langword="new"/> <see cref="IMyServiceBase"/> into the <see cref="IMyServiceHandler"/>
         /// </summary>
         /// <param name="_service"></param>
+        /// <exception cref="ServiceDuplicateException"></exception>
         public void InjectService (IMyServiceBase _service)
         {
             if ( services.Find(service => service.ServiceID == _service.ServiceID) == null )
@@ -96,6 +97,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// <typeparam name="T"></typeparam>
         /// <param name="_serviceID"></param>
         /// <returns>The first occurence that matches the <paramref name="_serviceID"/> as an instance of type <typeparamref name="T"/></returns>
+        /// <exception cref="InvalidCastException"></exception>
         public T GetServiceAs<T> (string _serviceID)
         {
             IMyServiceBase service = services.Find(service => service.ServiceID == _serviceID);

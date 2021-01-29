@@ -47,7 +47,21 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name = "_identifier"> The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyTicket"/> <see langword="object"/></param >
-        /// <returns></returns>
+        /// <returns><see langword="true"/> if the <see cref="IMyParkingSpot"/> <see langword="object"/> could be deleted; Otherwise <see langword="false"/></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        /// <exception cref="EncoderFallbackException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="InvalidDataException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="ObjectDisposedException"></exception>
+        /// <exception cref="OutOfMemoryException"></exception>
+        /// <exception cref="PathTooLongException"></exception>
+        /// <exception cref="System.Security.SecurityException"></exception>
+        /// <exception cref="UnauthorizedAccessException"></exception>
         public bool DeleteData<IDType> (IMyRepositoryEntity<IDType, string> _entity)
         {
             if ( GetDataByIdentifier(_entity) != null )
@@ -82,7 +96,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_identifier">The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyTicket"/> <see langword="object"/></param>
         /// <returns>The first <see cref="IMyTicket"/> attached to the <typeparamref name="IDType"/> <paramref name="_identifier"/>. If no <see cref="IMyTicket"/> was found this will return <see langword="null"/></returns>
-        /// <exception cref="InvalidDataException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="OutOfMemoryException"></exception>
         public IMyTicket GetDataByIdentifier<IDType> (IDType _id)
         {
             using ( StreamReader file = new StreamReader(filePath) )
@@ -103,7 +123,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// Collects all the <see cref="IMyTicket"/> entries in <strong>data storage</strong>
         /// </summary>
         /// <returns>An <see cref="IEnumerable{T}"/> where T is <see cref="IMyTicket"/></returns>
-        /// <exception cref="InvalidDataException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="OutOfMemoryException"></exception>
         public IEnumerable<IMyTicket> GetEnumerable ()
         {
             List<IMyTicket> tickets = new List<IMyTicket>();
@@ -124,6 +150,16 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <param name="_data"></param>
         /// <returns><see langword="true"/> if the insertion was successful; Otherwise <see langword="false"/></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="OutOfMemoryException"></exception>
+        /// <exception cref="PathTooLongException"></exception>
+        /// <exception cref="System.Security.SecurityException"></exception>
+        /// <exception cref="UnauthorizedAccessException"></exception>
         public bool InsertData<IDType> (IMyRepositoryEntity<IDType, string> _data)
         {
             if ( GetDataByIdentifier(_data.ID) == null )
@@ -146,7 +182,20 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <param name="_data"></param>
         /// <returns><see langword="true"/> if the record was updated successfully; Otherwise <see langword="false"/></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        /// <exception cref="EncoderFallbackException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
         /// <exception cref="InvalidDataException"></exception>
+        /// <exception cref="IOException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="ObjectDisposedException"></exception>
+        /// <exception cref="OutOfMemoryException"></exception>
+        /// <exception cref="PathTooLongException"></exception>
+        /// <exception cref="System.Security.SecurityException"></exception>
+        /// <exception cref="UnauthorizedAccessException"></exception>
         public bool UpdateData<IDType> (IMyRepositoryEntity<IDType, string> _data)
         {
             if ( GetDataByIdentifier(_data.ID) != null )

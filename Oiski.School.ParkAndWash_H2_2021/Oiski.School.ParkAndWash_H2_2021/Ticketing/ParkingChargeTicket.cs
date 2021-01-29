@@ -43,6 +43,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// Restore a previous state of the <see cref="ParkingChargeTicket"/> based on the passed in <typeparamref name="SaveType"/> <see langword="value"/>
         /// </summary>
         /// <param name="_data"></param>
+        /// <exception cref="InvalidDataException"></exception>
         public override void BuildEntity (string _values)
         {
             base.BuildEntity(_values);
@@ -63,6 +64,12 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// 
         /// </summary>
         /// <returns>An <see cref="Array"/> of <see cref="KeyValuePair{TKey, TValue}"/> <see langword="objects"/> where <strong>key</strong> is the property name in <i>PascalCase</i></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArrayTypeMismatchException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="RankException"></exception>
         public override KeyValuePair<string, object>[] GetTicketProperties ()
         {
             KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[5];
@@ -79,6 +86,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <param name="_propertyName">The property name in <i>PascalCase</i></param>
         /// <param name="_value">The <see langword="value"/> to assign the property</param>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="PropertyNotFoundException{T}"></exception>
         public override void SetProperty (string _propertyName, object _value)
         {
             object property = null;
