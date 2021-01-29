@@ -171,11 +171,11 @@
       <FileName>Parking\SpotType.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.TicketType">
+  <Enum Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.ParkingTicketType">
     <Position X="27" Y="22.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAgAAEAAAAAACAAA=</HashCode>
-      <FileName>Ticketing\TicketType.cs</FileName>
+      <FileName>Ticketing\ParkingTicketType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

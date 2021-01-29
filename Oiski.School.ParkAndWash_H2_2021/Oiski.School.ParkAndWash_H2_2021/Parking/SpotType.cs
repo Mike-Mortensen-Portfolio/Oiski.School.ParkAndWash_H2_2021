@@ -5,7 +5,7 @@ using System.Text;
 namespace Oiski.School.ParkAndWash_H2_2021.Parking
 {
     /// <summary>
-    /// Defines a set of types a <see cref="IMyParkingSpot"/> can have
+    /// Defines a set of types an <see cref="IMyParkingSpot"/> can have
     /// </summary>
     public enum SpotType
     {
