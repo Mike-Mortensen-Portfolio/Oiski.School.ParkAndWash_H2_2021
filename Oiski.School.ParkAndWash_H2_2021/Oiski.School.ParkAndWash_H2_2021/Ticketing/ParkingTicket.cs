@@ -92,17 +92,21 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 
         public virtual void SetProperty (string _propertyName, object _value)
         {
+            object property = null;
             try
             {
                 switch ( _propertyName )
                 {
                     case "ParkingSpotID":
+                        property = ParkingSpotID;
                         ParkingSpotID = ( int ) _value;
                         break;
                     case "OccupationStamp":
+                        property = OccupationStamp;
                         OccupationStamp = ( DateTime ) _value;
                         break;
                     case "OccupationPricePrHour":
+                        property = OccupationPricePrHour;
                         OccupationPricePrHour = ( decimal ) _value;
                         break;
                     default:
@@ -111,7 +115,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             }
             catch ( InvalidCastException _e )
             {
-                throw new InvalidCastException("Invalid Property Value", _e);
+                throw new InvalidCastException($"Invalid Property Value: type of ({property})<{property.GetType()}> is not equal to type of ({_value})<{_value.GetType()}>", _e);
             }
 
         }

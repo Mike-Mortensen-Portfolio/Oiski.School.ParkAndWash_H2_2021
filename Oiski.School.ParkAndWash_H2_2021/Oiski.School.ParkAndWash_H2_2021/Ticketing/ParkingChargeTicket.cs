@@ -49,25 +49,34 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 
         public override void SetProperty (string _propertyName, object _value)
         {
-            base.SetProperty(_propertyName, _value);
+            object property = null;
 
             try
             {
-                switch ( _propertyName )
-                {
-                    case "ChargeCostPrKWH":
-                        ChargeCostPrKWH = ( decimal ) _value;
-                        break;
-                    case "ChargedKWatt":
-                        ChargedKWatt = ( double ) _value;
-                        break;
-                    default:
-                        throw new PropertyNotFoundException<IMyParkingTicket>(GetTicketProperties());
-                }
+                base.SetProperty(_propertyName, _value);
             }
-            catch ( InvalidCastException _e )
+            catch ( PropertyNotFoundException<IMyParkingTicket> _propertyException )
             {
-                throw new InvalidCastException("Invalid Property Value", _e);
+                try
+                {
+                    switch ( _propertyName )
+                    {
+                        case "ChargeCostPrKWH":
+                            property = ChargeCostPrKWH;
+                            ChargeCostPrKWH = ( decimal ) _value;
+                            break;
+                        case "ChargedKWatt":
+                            property = ChargedKWatt;
+                            ChargedKWatt = ( double ) _value;
+                            break;
+                        default:
+                            throw _propertyException;
+                    }
+                }
+                catch ( InvalidCastException _invalidException )
+                {
+                    throw new InvalidCastException($"Invalid Property Value: type of ({property})<{property.GetType()}> is not equal to type of ({_value})<{_value.GetType()}>", _invalidException);
+                }
             }
         }
     }

@@ -9,7 +9,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
     /// </summary>
     public class PropertyNotFoundException<T> : Exception
     {
-        public override string Message { get; } = $"Property doesn't exist!{Environment.NewLine} Properties for {typeof(T)}:{Environment.NewLine}";
+        public override string Message { get; } = $"Property doesn't exist!{Environment.NewLine}Properties for {typeof(T)}:{Environment.NewLine}";
         public KeyValuePair<string, object>[] Properties { get; }
 
         public PropertyNotFoundException (KeyValuePair<string, object>[] _properties)
