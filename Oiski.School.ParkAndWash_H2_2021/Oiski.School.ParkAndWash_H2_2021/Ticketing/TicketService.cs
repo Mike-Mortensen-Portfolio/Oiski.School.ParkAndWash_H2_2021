@@ -55,6 +55,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_itemID">The <see langword="int"/> ID <see langword="value"/></param>
         /// <returns><see langword="true"/> if the <see cref="IMyTicket"/> exists and could be canceled; Otherwise <see langword="false"/></returns>
+        /// <exception cref="InvalidCastException"></exception>
         public bool CancelServiceItem<IDType> (IDType _itemID)
         {
             IMyTicket ticket = FindServiceItem(ticket => ticket.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID));
@@ -105,10 +106,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <typeparam name="ValueType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_value">The <see langword="int"/> ID <see langword="value"/> of the requested <see cref="Parking.IMyParkingSpot"/></param>
         /// <returns>An <see cref="IMyTicket"/> that reserves the <see cref="Parking.IMyParkingSpot"/> attached to the ID <paramref name="_value"/>, if the requested ticket could be created; Otherwise <see langword="null"/></returns>
-        /// <exception cref="ServiceDuplicateException"></exception>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="OverflowException"></exception>
         public IMyTicket RequestServiceItem<ValueType> (ValueType _value)
         {
-            IMyTicket ticket = Factory.CreateParkingTicket(ParkAndWash.ConvertGeneric<ValueType, int>(_value), 150);
+            IMyTicket ticket = Factory.CreateParkingTicket(ParkAndWash.ConvertGeneric<ValueType, int>(_value), 0);
 
             AddServiceItem(ticket);
 
@@ -120,7 +122,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_itemID">The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyTicket"/></param>
-        /// <returns></returns>
+        /// <returns><see langword="true"/> if an <see langword="object"/> that matches the <paramref name="_itemID"/> is found; otherwise <see langword="false"/></returns>
+        /// <exception cref="InvalidCastException"></exception>
         public bool ValidateServiceItem<IDType> (IDType _itemID)
         {
             return FindServiceItem(ticket => ticket.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID)) != null;

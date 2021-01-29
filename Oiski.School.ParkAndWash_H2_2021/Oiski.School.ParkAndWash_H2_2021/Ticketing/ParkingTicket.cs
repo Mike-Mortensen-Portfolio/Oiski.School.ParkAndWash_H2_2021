@@ -25,6 +25,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <param name="_parkingSpotID"></param>
         /// <param name="_pricePrHour"></param>
+        /// <exception cref="OverflowException"></exception>
         public ParkingTicket (int _parkingSpotID, decimal _pricePrHour)
         {
             ID = ++ticketCount;
@@ -60,6 +61,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// Restore a previous state of the <see cref="ParkingTicket"/> based on the passed in <typeparamref name="SaveType"/> <see langword="value"/>
         /// </summary>
         /// <param name="_data"></param>
+        /// <exception cref="InvalidDataException"></exception>
         public virtual void BuildEntity (string _values)
         {
             string[] values = _values.Split(",");
@@ -98,6 +100,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <param name="_propertyName">The property name in <i>PascalCase</i></param>
         /// <param name="_value">The <see langword="value"/> to assign the property</param>
+        /// <exception cref="InvalidCastException"></exception>
+        /// <exception cref="PropertyNotFoundException{T}"></exception>
         public virtual void SetProperty (string _propertyName, object _value)
         {
             object property = null;

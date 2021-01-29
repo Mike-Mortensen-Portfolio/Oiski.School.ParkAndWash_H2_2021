@@ -32,6 +32,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// </summary>
         /// <param name="_type"></param>
         /// <returns>A new instance of <see cref="IMyParkingSpot"/> where the type is <paramref name="_type"/></returns>
+        /// <exception cref="OverflowException"></exception>
         public static IMyParkingSpot CreateParkingSpot (SpotType _type)
         {
             return new ParkingSpot(_type);
@@ -47,10 +48,18 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// <param name="_parkingSpotID"></param>
         /// <param name="_pricePrHour"></param>
         /// <returns>A new instance of <see cref="IMyTicket"/> with a linked <see cref="IMyParkingSpot"/>.</returns>
+        /// <exception cref="OverflowException"></exception>
         public static IMyTicket CreateParkingTicket (int _parkingSpotID, decimal _pricePrHour)
         {
             return new ParkingTicket(_parkingSpotID, _pricePrHour);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_type"></param>
+        /// <returns>A new instance of <see cref="IMyTicket"/> that matches the passed in <see cref="ParkingTicketType"/></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="OverflowException"></exception>
         public static IMyTicket CreateParkingTicket (ParkingTicketType _type)
         {
             return _type switch
@@ -62,7 +71,6 @@ namespace Oiski.School.ParkAndWash_H2_2021
                 _ => throw new ArgumentException($"Type: {_type} is not valid in this context!"),
             };
         }
-
         internal static IMyTicket CreateDefaultParkingTicket ()
         {
             return new ParkingTicket();
