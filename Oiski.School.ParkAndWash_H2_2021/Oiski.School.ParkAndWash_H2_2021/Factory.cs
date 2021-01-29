@@ -47,13 +47,13 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// <param name="_parkingSpotID"></param>
         /// <param name="_pricePrHour"></param>
         /// <returns>A new instance of <see cref="IMyTicket"/> with a linked <see cref="IMyParkingSpot"/>.</returns>
-        public static IMyTicket CreateTicket (int _parkingSpotID, decimal _pricePrHour)
+        public static IMyTicket CreateParkingTicket (int _parkingSpotID, decimal _pricePrHour)
         {
-            return new Ticket(_parkingSpotID, _pricePrHour);
+            return new ParkingTicket(_parkingSpotID, _pricePrHour);
         }
-        internal static IMyTicket CreateDefaultTicket ()
+        internal static IMyTicket CreateDefaultParkingTicket ()
         {
-            return new Ticket();
+            return new ParkingTicket();
         }
     }
 }
