@@ -8,7 +8,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
     /// <summary>
     /// Defines a Ticket
     /// </summary>
-    internal class ParkingTicket : IMyTicket, IMyRepositoryEntity<int, string>
+    internal class ParkingTicket : IMyParkingTicket, IMyRepositoryEntity<int, string>
     {
         protected static int ticketCount = 0;
 
@@ -51,7 +51,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// 
         /// </summary>
         /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
-        public string SaveEntity ()
+        public virtual string SaveEntity ()
         {
             return $"{ID},{OccupationStamp},{OccupationPricePrHour},{ParkingSpotID}";
         }
@@ -61,7 +61,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         /// <param name="_values"></param>
         /// <exception cref="InvalidDataException"></exception>
-        public void BuildEntity (string _values)
+        public virtual void BuildEntity (string _values)
         {
             string[] values = _values.Split(",");
 
@@ -76,6 +76,44 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             {
                 throw new InvalidDataException($"One or more fields couldn't be retrieved from: {_values}");
             }
+        }
+
+        public virtual KeyValuePair<string, object>[] GetTicketProperties ()
+        {
+            KeyValuePair<string, object>[] properties =
+            {
+                KeyValuePair.Create ( "ParkingSpotID",(object)ParkingSpotID),
+                KeyValuePair.Create ( "OccupationStamp",(object)OccupationStamp),
+                KeyValuePair.Create ( "OccupationPricePrHour",(object)OccupationPricePrHour)
+            };
+
+            return properties;
+        }
+
+        public virtual void SetProperty (string _propertyName, object _value)
+        {
+            try
+            {
+                switch ( _propertyName )
+                {
+                    case "ParkingSpotID":
+                        ParkingSpotID = ( int ) _value;
+                        break;
+                    case "OccupationStamp":
+                        OccupationStamp = ( DateTime ) _value;
+                        break;
+                    case "OccupationPricePrHour":
+                        OccupationPricePrHour = ( decimal ) _value;
+                        break;
+                    default:
+                        throw new PropertyNotFoundException<IMyParkingTicket>(GetTicketProperties());
+                }
+            }
+            catch ( InvalidCastException _e )
+            {
+                throw new InvalidCastException("Invalid Property Value", _e);
+            }
+
         }
     }
 }

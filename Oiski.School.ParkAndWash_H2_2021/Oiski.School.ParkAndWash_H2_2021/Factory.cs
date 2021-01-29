@@ -51,6 +51,18 @@ namespace Oiski.School.ParkAndWash_H2_2021
         {
             return new ParkingTicket(_parkingSpotID, _pricePrHour);
         }
+        public static IMyTicket CreateParkingTicket (TicketType _type)
+        {
+            return _type switch
+            {
+                TicketType.Standard => new ParkingTicket(0, 0),
+                TicketType.ParkingCharge => new ParkingChargeTicket(0, 0, 0),
+                TicketType.ParkingWash => new ParkingWashTicket(0, 0, string.Empty),
+                TicketType.ParkingService => new ParkingServiceTicket(0, 0, string.Empty),
+                _ => throw new ArgumentException($"Type: {_type} is not valid in this context!"),
+            };
+        }
+
         internal static IMyTicket CreateDefaultParkingTicket ()
         {
             return new ParkingTicket();

@@ -10,5 +10,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
     public interface IMyTicket
     {
         int ID { get; }
+
+        void SetProperty (string _propertyName, object _value);
+
+        KeyValuePair<string, object>[] GetTicketProperties ();
     }
 }
