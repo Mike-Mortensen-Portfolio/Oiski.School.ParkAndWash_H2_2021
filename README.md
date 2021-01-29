@@ -145,6 +145,9 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to set properties through base interface
     - Ability to collect properties through base interface
     - Introduced PropertyNotFoundException`, which is thrown when a property that does not exist or unavailable is requested
+- **[v0.8.2 - Revision 2](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.8.2)**
+  - Added proper `Exception` information to method summaries
+
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
