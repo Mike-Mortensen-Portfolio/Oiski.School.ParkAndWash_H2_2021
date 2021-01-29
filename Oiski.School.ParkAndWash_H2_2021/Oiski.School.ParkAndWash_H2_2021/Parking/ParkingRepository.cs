@@ -8,9 +8,9 @@ using System.Text;
 namespace Oiski.School.ParkAndWash_H2_2021.Parking
 {
     /// <summary>
-    /// The <see cref="IMyRepository{T}"/> <see langword="object"/> that serves as a link between <see cref="IMyParkingSpot"/> <strong>datastorage</strong> and the program
+    /// The <see cref="IMyRepository{EntityType, SaveType}"/> <see langword="object"/> that serves as a link between <see cref="IMyParkingSpot"/> <strong>datastorage</strong> and the program
     /// </summary>
-    public sealed class ParkingRepository : IMyRepository<IMyParkingSpot>
+    public sealed class ParkingRepository : IMyRepository<IMyParkingSpot, string>
     {
         /// <summary>
         /// Creates a new instance of type <see cref="ParkingRepository"/>
@@ -26,7 +26,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         private static ParkingRepository link = null;
 
         /// <summary>
-        /// The entry point for the <see cref="IMyRepository{T}"/> <see langword="object"/> 
+        /// The entry point for the <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> 
         /// </summary>
         public static ParkingRepository Link
         {
@@ -41,7 +41,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
             }
         }
 
-        private string filePath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\ParkingSpots.csv";
+        private readonly string filePath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\ParkingSpots.csv";
 
         /// <summary>
         /// Delete an <see cref="IMyParkingSpot"/> entry in <strong>data storage</strong>
@@ -49,9 +49,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name = "_identifier"> The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyParkingSpot"/> <see langword="object"/></param >
         /// <returns></returns>
-        public bool DeleteData<IDType> (IDType _identifier)
+        public bool DeleteData<IDType> (IMyRepositoryEntity<IDType, string> _entity)
         {
-            if ( GetDataByIdentifier(ParkAndWash.ConvertGeneric<IDType, int>(_identifier)) != null )
+            if ( GetDataByIdentifier(_entity) != null )
             {
                 StreamReader file = new StreamReader(filePath);
                 string[] entries = file.ReadToEnd().Split(Environment.NewLine);
@@ -62,13 +62,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
 
                 for ( int i = 0; i < entries.Length; i++ )
                 {
-                    if ( !entries[i].Contains(ParkAndWash.ConvertGeneric<IDType, int>(_identifier).ToString()) )
+                    if ( !entries[i].Contains(ParkAndWash.ConvertGeneric<IDType, int>(_entity.ID).ToString()) )
                     {
-                        updatedFileContent += $"{entries[i]}{Environment.NewLine}";
+                        updatedFileContent += $"{entries[i]}";
                     }
                 }
 
-                fileWriter.WriteLine(updatedFileContent);
+                fileWriter.Write(updatedFileContent);
                 fileWriter.Close();
 
                 return true;
@@ -84,28 +84,16 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <param name="_identifier">The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyParkingSpot"/> <see langword="object"/></param>
         /// <returns>The first <see cref="IMyParkingSpot"/> attached to the <typeparamref name="IDType"/> <paramref name="_identifier"/>. If no <see cref="IMyParkingSpot"/> was found this will return <see langword="null"/></returns>
         /// <exception cref="InvalidDataException"></exception>
-        public IMyParkingSpot GetDataByIdentifier<IDType> (IDType _identifier)
+        public IMyParkingSpot GetDataByIdentifier<IDType> (IDType _id)
         {
             using ( StreamReader file = new StreamReader(filePath) )
             {
                 string line = file.ReadLine();
-                if ( !string.IsNullOrWhiteSpace(line) && line.Contains(ParkAndWash.ConvertGeneric<IDType, int>(_identifier).ToString()) )
+                if ( !string.IsNullOrWhiteSpace(line) && line.Contains(ParkAndWash.ConvertGeneric<IDType, int>(_id).ToString()) )
                 {
-                    string[] values = line.Split(",");
-
-                    if ( int.TryParse(values[0], out int _id) && bool.TryParse(values[1], out bool _occupied) && decimal.TryParse(values[2], out decimal _spotFee) && int.TryParse(values[3], out int _type) )
-                    {
-                        ParkingSpot spot = Factory.CreateDefaultParkingSpot() as ParkingSpot;
-                        spot.ID = _id;
-                        spot.Occupied = _occupied;
-                        spot.SpotFee = _spotFee;
-                        spot.Type = ( SpotType ) _type;
-
-                        file.Close();
-                        return spot;
-                    }
-
-                    throw new InvalidDataException($"One or more fields couldn't be retrieved from: {line}");
+                    IMyParkingSpot spot = Factory.CreateDefaultParkingSpot();
+                    ( ( IMyRepositoryEntity<int, string> ) spot ).BuildEntity(line);
+                    return spot;
                 }
             }
 
@@ -123,22 +111,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
 
             using ( StreamReader file = new StreamReader(filePath) )
             {
-                string[] values = file.ReadLine().Split(",");
+                IMyRepositoryEntity<int, string> spot = Factory.CreateDefaultParkingSpot() as IMyRepositoryEntity<int, string>;
+                spot.BuildEntity(file.ReadLine());
 
-                if ( int.TryParse(values[0], out int _id) && bool.TryParse(values[1], out bool _occupied) && decimal.TryParse(values[2], out decimal _spotFee) && int.TryParse(values[3], out int _type) )
-                {
-                    ParkingSpot spot = Factory.CreateDefaultParkingSpot() as ParkingSpot;
-                    spot.ID = _id;
-                    spot.Occupied = _occupied;
-                    spot.SpotFee = _spotFee;
-                    spot.Type = ( SpotType ) _type;
-
-                    spots.Add(spot);
-                }
-                else
-                {
-                    throw new InvalidDataException($"One or more fields couldn't be retrieved from: {file.ReadLine()}");
-                }
+                spots.Add(spot as IMyParkingSpot);
             }
 
             return spots;
@@ -149,13 +125,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <param name="_data"></param>
         /// <returns><see langword="true"/> if the insertion was successful; Otherwise <see langword="false"/></returns>
-        public bool InsertData (IMyParkingSpot _data)
+        public bool InsertData<IDType> (IMyRepositoryEntity<IDType, string> _data)
         {
             if ( GetDataByIdentifier(_data.ID) == null )
             {
                 using ( StreamWriter file = new StreamWriter(filePath, true) )
                 {
-                    string lineContent = $"{_data.ID},{_data.Occupied},{_data.SpotFee},{( int ) _data.Type}";
+                    string lineContent = _data.SaveEntity();
 
                     file.WriteLine(lineContent);
                 }
@@ -172,7 +148,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <param name="_data"></param>
         /// <returns><see langword="true"/> if the record was updated successfully; Otherwise <see langword="false"/></returns>
         /// <exception cref="InvalidDataException"></exception>
-        public bool UpdateData (IMyParkingSpot _data)
+        public bool UpdateData<IDType> (IMyRepositoryEntity<IDType, string> _data)
         {
             if ( GetDataByIdentifier(_data.ID) != null )
             {
@@ -182,25 +158,20 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
 
                     if ( line.Contains(_data.ID.ToString()) )
                     {
-                        string[] values = line.Split(",");
+                        string updatedLine = _data.SaveEntity();
 
-                        if ( int.TryParse(values[0], out int _id) && bool.TryParse(values[1], out bool _occupied) && decimal.TryParse(values[2], out decimal _spotFee) && int.TryParse(values[3], out int _type) )
+                        file.Close();
+                        StreamReader fullFile = new StreamReader(filePath);
+                        string fileContent = fullFile.ReadToEnd();
+                        fullFile.Close();
+                        fileContent = fileContent.Replace(line, updatedLine);
+
+                        using ( StreamWriter writer = new StreamWriter(filePath) )
                         {
-                            string updatedLine = $"{_data.ID},{_data.Occupied},{_data.SpotFee},{( int ) _data.Type}";
-
-                            string fileContent = file.ReadToEnd();
-                            fileContent.Replace(line, updatedLine);
-
-                            using ( StreamWriter writer = new StreamWriter(filePath) )
-                            {
-                                writer.WriteLine(fileContent);
-                            }
-
-                            file.Close();
-                            return true;
+                            writer.Write(fileContent);
                         }
 
-                        throw new InvalidDataException($"One or more fields couldn't be retrieved from: {line}");
+                        return true;
                     }
                 }
             }

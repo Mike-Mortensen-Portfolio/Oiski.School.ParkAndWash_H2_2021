@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using System.IO;
 
 namespace Oiski.School.ParkAndWash_H2_2021.Parking
 {
     /// <summary>
     /// Defines a Parking Spot
     /// </summary>
-    internal class ParkingSpot : IMyParkingSpot
+    internal class ParkingSpot : IMyParkingSpot, IMyRepositoryEntity<int, string>
     {
         protected static int lotCount = 0;
 
@@ -39,5 +41,36 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// The fee that is added on top of the hourly parking price
         /// </summary>
         public decimal SpotFee { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
+        public string SaveEntity ()
+        {
+            return $"{ID},{(int)Type},{Occupied},{SpotFee}";
+        }
+        
+        /// <summary>
+        /// Rebuild <see langword="this"/> instance based on the passed in <see langword="string"/> <paramref name="_values"/>
+        /// </summary>
+        /// <param name="_values"></param>
+        /// <exception cref="InvalidDataException"></exception>
+        public void BuildEntity (string _values)
+        {
+            string[] values = _values.Split(",");
+
+            if ( int.TryParse(values[0], out int _id)  && int.TryParse(values[1], out int _type) && bool.TryParse(values[2], out bool _occupied) && decimal.TryParse(values[3], out decimal _spotFee) )
+            {
+                this.ID = _id;
+                this.Occupied = _occupied;
+                this.SpotFee = _spotFee;
+                this.Type = ( SpotType ) _type;
+            }
+            else
+            {
+                throw new InvalidDataException($"One or more fields couldn't be retrieved from: {_values}");
+            }
+        }
     }
 }

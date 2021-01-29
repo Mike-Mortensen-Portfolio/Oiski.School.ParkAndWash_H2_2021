@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
@@ -7,7 +8,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
     /// <summary>
     /// Defines a Ticket
     /// </summary>
-    internal class ParkingTicket : IMyParkingTicket
+    internal class ParkingTicket : IMyTicket, IMyRepositoryEntity<int, string>
     {
         protected static int ticketCount = 0;
 
@@ -45,5 +46,36 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// The cost for occupating an <see cref="Parking.IMyParkingSpot"/> fo a hour
         /// </summary>
         public decimal OccupationPricePrHour { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
+        public string SaveEntity ()
+        {
+            return $"{ID},{OccupationStamp},{OccupationPricePrHour},{ParkingSpotID}";
+        }
+
+        /// <summary>
+        /// Rebuild <see langword="this"/> instance based on the passed in <see langword="string"/> <paramref name="_values"/>
+        /// </summary>
+        /// <param name="_values"></param>
+        /// <exception cref="InvalidDataException"></exception>
+        public void BuildEntity (string _values)
+        {
+            string[] values = _values.Split(",");
+
+            if ( int.TryParse(values[0], out int _id) && DateTime.TryParse(values[1], out DateTime _stamp) && decimal.TryParse(values[2], out decimal _spotFee) && int.TryParse(values[3], out int _spotID) )
+            {
+                this.ID = _id;
+                this.OccupationStamp = _stamp;
+                this.OccupationPricePrHour = _spotFee;
+                this.ParkingSpotID = _spotID;
+            }
+            else
+            {
+                throw new InvalidDataException($"One or more fields couldn't be retrieved from: {_values}");
+            }
+        }
     }
 }
