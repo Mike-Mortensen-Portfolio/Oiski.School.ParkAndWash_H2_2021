@@ -94,7 +94,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 
                     if ( int.TryParse(values[0], out int _id) && decimal.TryParse(values[1], out decimal _occupationPrHour) && DateTime.TryParse(values[2], out DateTime _occupationStamp) && int.TryParse(values[3], out int _parkingSpotID) )
                     {
-                        Ticket ticket = Factory.CreateDefaultTicket() as Ticket;
+                        ParkingTicket ticket = Factory.CreateDefaultParkingTicket() as ParkingTicket;
                         ticket.ID = _id;
                         ticket.OccupationPricePrHour = _occupationPrHour;
                         ticket.OccupationStamp = _occupationStamp;
@@ -126,7 +126,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 
                 if ( int.TryParse(values[0], out int _id) && decimal.TryParse(values[1], out decimal _occupationPrHour) && DateTime.TryParse(values[2], out DateTime _occupationStamp) && int.TryParse(values[3], out int _parkingSpotID) )
                 {
-                    Ticket ticket = Factory.CreateDefaultTicket() as Ticket;
+                    ParkingTicket ticket = Factory.CreateDefaultParkingTicket() as ParkingTicket;
                     ticket.ID = _id;
                     ticket.OccupationPricePrHour = _occupationPrHour;
                     ticket.OccupationStamp = _occupationStamp;

@@ -108,7 +108,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="ServiceDuplicateException"></exception>
         public IMyTicket RequestServiceItem<ValueType> (ValueType _value)
         {
-            IMyTicket ticket = Factory.CreateTicket(ParkAndWash.ConvertGeneric<ValueType, int>(_value), 150);
+            IMyTicket ticket = Factory.CreateParkingTicket(ParkAndWash.ConvertGeneric<ValueType, int>(_value), 150);
 
             AddServiceItem(ticket);
 
