@@ -38,7 +38,7 @@ the occupation involves.
     in the we store data.
 - **Interface**
   - No specific requirements about layout
-  - Must be able to show a client the amout of available parking spots within each type of spot.
+  - Must be able to show a client the amount of available parking spots within each type of spot.
 
 ## The program
 The assignments states that the following criteria:
