@@ -137,7 +137,14 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Changed `IMyRepository` interface to be more generic
     - Restructured `ParkingRepository` to follow the new structure of `IMyRepository`
     - Restructured `TicketRepository` to follow the new structure of `IMyRepository`
-
+- **[v0.8.1 - Revision 1](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.8.1)**
+  - **Changes to `Factory`**
+    - Ability to create all types of Parking Tickets
+  - **Changes to Ticket System**
+    - Fixed `ParkingTicket` class not Implementing the extended variant of the `IMyTicket` hierarchy
+    - Ability to set properties through base interface
+    - Ability to collect properties through base interface
+    - Introduced PropertyNotFoundException`, which is thrown when a property that does not exist or unavailable is requested
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
