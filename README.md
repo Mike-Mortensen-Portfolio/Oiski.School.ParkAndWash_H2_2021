@@ -155,7 +155,7 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
   - **Changes to `ParkingRepository` and `TicketRepository`**
     - Implemented `FileHandler`
   - **Changes to `ParkingSpot` and `ParkingTicket`**
-    - ID is not saves as "ID[id]" in file. _Example: "ID1"_
+    - ID is now saves as "ID[id]" in file. _Example: "ID1"_
   - **Changes to `ParkAndWash`**
     - Removed `ConvertGeneric` method, as it's no longer needed. The `Oiski.Common.Generic.CastGeneric` serves as a replacement
 
