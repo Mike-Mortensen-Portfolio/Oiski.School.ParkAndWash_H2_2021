@@ -151,6 +151,13 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
   - **Added `Oiski.Common` Library**
     - Added a Converter Class that can cast genric types
     - Added a FileHandler Class that can manipulate text files
+- **[v0.9.1 - Revision 3](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.9.1)**
+  - **Changes to `ParkingRepository` and `TicketRepository`**
+    - Implemented `FileHandler`
+  - **Changes to `ParkingSpot` and `ParkingTicket`**
+    - ID is not saves as "ID[id]" in file. _Example: "ID1"_
+  - **Changes to `ParkAndWash`**
+    - Removed `ConvertGeneric` method, as it's no longer needed. The `Oiski.Common.Generic.CastGeneric` serves as a replacement
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
