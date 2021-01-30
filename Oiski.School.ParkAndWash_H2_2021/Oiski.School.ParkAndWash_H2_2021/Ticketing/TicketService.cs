@@ -58,7 +58,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="InvalidCastException"></exception>
         public bool CancelServiceItem<IDType> (IDType _itemID)
         {
-            IMyTicket ticket = FindServiceItem(ticket => ticket.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID));
+            IMyTicket ticket = FindServiceItem(ticket => ticket.ID == Common.Generics.Converter.CastGeneric<IDType, int>(_itemID));
 
             return RemoveServiceItem(ticket);
         }
@@ -110,7 +110,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="OverflowException"></exception>
         public IMyTicket RequestServiceItem<ValueType> (ValueType _value)
         {
-            IMyTicket ticket = Factory.CreateParkingTicket(ParkAndWash.ConvertGeneric<ValueType, int>(_value), 0);
+            IMyTicket ticket = Factory.CreateParkingTicket(Common.Generics.Converter.CastGeneric<ValueType, int>(_value), 0);
 
             AddServiceItem(ticket);
 
@@ -126,7 +126,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="InvalidCastException"></exception>
         public bool ValidateServiceItem<IDType> (IDType _itemID)
         {
-            return FindServiceItem(ticket => ticket.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID)) != null;
+            return FindServiceItem(ticket => ticket.ID == Common.Generics.Converter.CastGeneric<IDType, int>(_itemID)) != null;
         }
 
         /// <summary>

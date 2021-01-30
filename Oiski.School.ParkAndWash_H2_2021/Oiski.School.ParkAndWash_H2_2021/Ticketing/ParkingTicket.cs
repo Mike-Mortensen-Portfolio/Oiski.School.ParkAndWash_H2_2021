@@ -54,7 +54,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <returns>The current state of <see langword="this"/> <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> as an instance of type <typeparamref name="SaveType"/></returns>
         public virtual string SaveEntity ()
         {
-            return $"{ID},{OccupationStamp},{OccupationPricePrHour},{ParkingSpotID}";
+            return $"ID{ID},{OccupationStamp},{OccupationPricePrHour},{ParkingSpotID}";
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         {
             string[] values = _values.Split(",");
 
-            if ( int.TryParse(values[0], out int _id) && DateTime.TryParse(values[1], out DateTime _stamp) && decimal.TryParse(values[2], out decimal _spotFee) && int.TryParse(values[3], out int _spotID) )
+            if ( int.TryParse(values[0].Replace("ID", string.Empty), out int _id) && DateTime.TryParse(values[1], out DateTime _stamp) && decimal.TryParse(values[2], out decimal _spotFee) && int.TryParse(values[3], out int _spotID) )
             {
                 this.ID = _id;
                 this.OccupationStamp = _stamp;

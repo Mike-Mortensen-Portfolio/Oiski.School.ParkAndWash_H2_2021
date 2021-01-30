@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Linq;
 
 namespace Oiski.Common.Files
 {
@@ -268,13 +269,16 @@ namespace Oiski.Common.Files
         /// <exception cref="OutOfMemoryException"></exception>
         public string FindLine (string _searchKey)
         {
-            string[] lines = ReadLines();
-
-            foreach ( string line in lines )
+            if ( _searchKey != null )
             {
-                if ( line.ToLower().Contains(_searchKey.ToLower()) )
+                string[] lines = ReadLines();
+
+                foreach ( string line in lines )
                 {
-                    return line;
+                    if ( !string.IsNullOrWhiteSpace(line) && line.ToLower().Contains(_searchKey.ToLower()) )
+                    {
+                        return line;
+                    }
                 }
             }
 
@@ -294,18 +298,33 @@ namespace Oiski.Common.Files
         /// <exception cref="OutOfMemoryException"></exception>
         public IReadOnlyList<string> FindLines (string _searchKey)
         {
-            string[] lines = ReadLines();
-            List<string> foundLines = new List<string>();
+            List<string> foundLines = null;
 
-            foreach ( string line in lines )
+            if ( _searchKey != null )
             {
-                if ( line.ToLower().Contains(_searchKey.ToLower()) )
+                string[] lines = ReadLines();
+                foundLines = new List<string>();
+
+                foreach ( string line in lines )
                 {
-                    foundLines.Add(line);
+                    if ( !string.IsNullOrWhiteSpace(line) && line.ToLower().Contains(_searchKey.ToLower()) )
+                    {
+                        foundLines.Add(line);
+                    }
                 }
             }
 
             return foundLines;
+        }
+
+        /// <summary>
+        /// Find the line number of a specific line
+        /// </summary>
+        /// <param name="_line"></param>
+        /// <returns>The zero-based index of the first occurence if <paramref name="_line"/> within the file, if found; Otherwise, -1</returns>
+        public int GetLineNumber (string _line)
+        {
+            return ReadLines().ToList().IndexOf(_line);
         }
     }
 }

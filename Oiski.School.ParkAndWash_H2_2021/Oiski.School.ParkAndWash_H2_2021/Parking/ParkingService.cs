@@ -59,7 +59,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         public bool CancelServiceItem<IDType> (IDType _itemID)
         {
 
-            IMyParkingSpot spot = FindServiceItem(spot => spot.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID) && spot.Occupied == true);
+            IMyParkingSpot spot = FindServiceItem(spot => spot.ID == Common.Generics.Converter.CastGeneric<IDType, int>(_itemID) && spot.Occupied == true);
 
             if ( spot != null )
             {
@@ -117,7 +117,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="InvalidCastException"></exception>
         public IMyParkingSpot RequestServiceItem<ValueType> (ValueType _value)
         {
-            return FindServiceItem(spot => spot.Type == ParkAndWash.ConvertGeneric<ValueType, SpotType>(_value) && spot.Occupied == false);
+            return FindServiceItem(spot => spot.Type == Common.Generics.Converter.CastGeneric<ValueType, SpotType>(_value) && spot.Occupied == false);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="InvalidCastException"></exception>
         public bool ValidateServiceItem<IDType> (IDType _itemID)
         {
-            if ( FindServiceItem(spot => spot.ID == ParkAndWash.ConvertGeneric<IDType, int>(_itemID)) != null )
+            if ( FindServiceItem(spot => spot.ID == Common.Generics.Converter.CastGeneric<IDType, int>(_itemID)) != null )
             {
                 return true;
             }
