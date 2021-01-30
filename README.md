@@ -147,6 +147,10 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Introduced PropertyNotFoundException`, which is thrown when a property that does not exist or unavailable is requested
 - **[v0.8.2 - Revision 2](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.8.2)**
   - Added proper `Exception` information to method summaries
+- **[v0.9.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.9.0)**
+  - **Added `Oiski.Common` Library**
+    - Added a Converter Class that can cast genric types
+    - Added a FileHandler Class that can manipulate text files
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
