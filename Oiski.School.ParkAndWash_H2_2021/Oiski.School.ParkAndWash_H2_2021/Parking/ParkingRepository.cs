@@ -1,4 +1,5 @@
-﻿using Oiski.School.ParkAndWash_H2_2021.Parking;
+﻿using Oiski.Common.Files;
+using Oiski.School.ParkAndWash_H2_2021.Parking;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,13 +18,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         private ParkingRepository ()
         {
-            if ( !File.Exists(filePath) )
-            {
-                File.Create(filePath).Close();
-            }
+            file = new FileHandler(filePath);
         }
 
         private static ParkingRepository link = null;
+        private FileHandler file;
 
         /// <summary>
         /// The entry point for the <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> 
@@ -65,26 +64,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="UnauthorizedAccessException"></exception>
         public bool DeleteData<IDType> (IMyRepositoryEntity<IDType, string> _entity)
         {
-            if ( GetDataByIdentifier(_entity) != null )
+            if ( GetDataByIdentifier(_entity.ID) != null )
             {
-                StreamReader file = new StreamReader(filePath);
-                string[] entries = file.ReadToEnd().Split(Environment.NewLine);
-                file.Close();
-                StreamWriter fileWriter = new StreamWriter(filePath);
-
-                string updatedFileContent = string.Empty;
-
-                for ( int i = 0; i < entries.Length; i++ )
-                {
-                    if ( !entries[i].Contains(ParkAndWash.ConvertGeneric<IDType, int>(_entity.ID).ToString()) )
-                    {
-                        updatedFileContent += $"{entries[i]}";
-                    }
-                }
-
-                fileWriter.Write(updatedFileContent);
-                fileWriter.Close();
-
+                file.DeleteLine(file.GetLineNumber(file.FindLine(_entity.ID.ToString())));
                 return true;
             }
 
@@ -106,15 +88,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="OutOfMemoryException"></exception>
         public IMyParkingSpot GetDataByIdentifier<IDType> (IDType _id)
         {
-            using ( StreamReader file = new StreamReader(filePath) )
+            string data = file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_id)}");
+
+            if ( data != null )
             {
-                string line = file.ReadLine();
-                if ( !string.IsNullOrWhiteSpace(line) && line.Contains(ParkAndWash.ConvertGeneric<IDType, int>(_id).ToString()) )
-                {
-                    IMyParkingSpot spot = Factory.CreateDefaultParkingSpot();
-                    ( ( IMyRepositoryEntity<int, string> ) spot ).BuildEntity(line);
-                    return spot;
-                }
+                IMyParkingSpot spot = Factory.CreateDefaultParkingSpot();
+                ( ( IMyRepositoryEntity<int, string> ) spot ).BuildEntity(data);
+                return spot;
             }
 
             return null;
@@ -135,10 +115,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         {
             List<IMyParkingSpot> spots = new List<IMyParkingSpot>();
 
-            using ( StreamReader file = new StreamReader(filePath) )
+            foreach ( string data in file.ReadLines() )
             {
                 IMyRepositoryEntity<int, string> spot = Factory.CreateDefaultParkingSpot() as IMyRepositoryEntity<int, string>;
-                spot.BuildEntity(file.ReadLine());
+                spot.BuildEntity(data);
 
                 spots.Add(spot as IMyParkingSpot);
             }
@@ -165,12 +145,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         {
             if ( GetDataByIdentifier(_data.ID) == null )
             {
-                using ( StreamWriter file = new StreamWriter(filePath, true) )
-                {
-                    string lineContent = _data.SaveEntity();
-
-                    file.WriteLine(lineContent);
-                }
+                file.WriteLine(_data.SaveEntity(), true);
 
                 return true;
             }
@@ -201,28 +176,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         {
             if ( GetDataByIdentifier(_data.ID) != null )
             {
-                using ( StreamReader file = new StreamReader(filePath) )
-                {
-                    string line = file.ReadLine();
-
-                    if ( line.Contains(_data.ID.ToString()) )
-                    {
-                        string updatedLine = _data.SaveEntity();
-
-                        file.Close();
-                        StreamReader fullFile = new StreamReader(filePath);
-                        string fileContent = fullFile.ReadToEnd();
-                        fullFile.Close();
-                        fileContent = fileContent.Replace(line, updatedLine);
-
-                        using ( StreamWriter writer = new StreamWriter(filePath) )
-                        {
-                            writer.Write(fileContent);
-                        }
-
-                        return true;
-                    }
-                }
+                file.UpdateLine(_data.SaveEntity(), file.GetLineNumber(file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_data.ID)}")));
             }
 
             return false;

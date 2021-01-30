@@ -110,33 +110,5 @@ namespace Oiski.School.ParkAndWash_H2_2021
                 throw new InvalidCastException($"Servicetype mismatch", _e);
             }
         }
-
-        /// <summary>
-        /// Convert  the <see langword="value"/> of a generic <typeparamref name="Type"/> to <typeparamref name="CType"/>
-        /// </summary>
-        /// <typeparam name="Type">The type of the <paramref name="_toConvert"/></typeparam>
-        /// <typeparam name="CType">The type to convert to</typeparam>
-        /// <param name="_toConvert">The <see langword="value"/> to convert</param>
-        /// <returns>The <see langword="value"/> of <paramref name="_toConvert"/> if the conversion was successful; otherwise the <see langword="default"/> <see langword="value"/> of <paramref name="_toConvert"/></returns>
-        /// <exception cref="InvalidCastException"></exception>
-        internal static CType ConvertGeneric<Type, CType> (Type _toConvert)
-        {
-            CType converted = default;
-
-            try
-            {
-                if ( typeof(Type) == typeof(CType) )
-                {
-                    converted = ( CType ) Convert.ChangeType(_toConvert, typeof(CType));
-                }
-            }
-            catch ( InvalidCastException _e )
-            {
-
-                throw new InvalidCastException("Invalid Conversion Arguments", _e);
-            }
-
-            return converted;
-        }
     }
 }

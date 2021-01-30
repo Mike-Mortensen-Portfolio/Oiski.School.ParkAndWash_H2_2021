@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oiski.Common.Files;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -16,13 +17,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         private TicketRepository ()
         {
-            if ( !File.Exists(filePath) )
-            {
-                File.Create(filePath).Close();
-            }
+            file = new FileHandler(filePath);
         }
 
         private static TicketRepository link = null;
+        private FileHandler file;
 
         /// <summary>
         /// The entry point for the <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> 
@@ -64,26 +63,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="UnauthorizedAccessException"></exception>
         public bool DeleteData<IDType> (IMyRepositoryEntity<IDType, string> _entity)
         {
-            if ( GetDataByIdentifier(_entity) != null )
+            if ( GetDataByIdentifier(_entity.ID) != null )
             {
-                StreamReader file = new StreamReader(filePath);
-                string[] entries = file.ReadToEnd().Split(Environment.NewLine);
-                file.Close();
-                StreamWriter fileWriter = new StreamWriter(filePath);
-
-                string updatedFileContent = string.Empty;
-
-                for ( int i = 0; i < entries.Length; i++ )
-                {
-                    if ( !entries[i].Contains(ParkAndWash.ConvertGeneric<IDType, int>(_entity.ID).ToString()) )
-                    {
-                        updatedFileContent += $"{entries[i]}";
-                    }
-                }
-
-                fileWriter.Write(updatedFileContent);
-                fileWriter.Close();
-
+                file.DeleteLine(file.GetLineNumber(file.FindLine(_entity.ID.ToString())));
                 return true;
             }
 
@@ -105,15 +87,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="OutOfMemoryException"></exception>
         public IMyTicket GetDataByIdentifier<IDType> (IDType _id)
         {
-            using ( StreamReader file = new StreamReader(filePath) )
+            string data = file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_id)}");
+
+            if ( data != null )
             {
-                string line = file.ReadLine();
-                if ( !string.IsNullOrWhiteSpace(line) && line.Contains(ParkAndWash.ConvertGeneric<IDType, int>(_id).ToString()) )
-                {
-                    IMyTicket ticket = Factory.CreateDefaultParkingTicket();
-                    ( ( IMyRepositoryEntity<int, string> ) ticket ).BuildEntity(line);
-                    return ticket;
-                }
+                IMyTicket ticket = Factory.CreateDefaultParkingTicket();
+                ( ( IMyRepositoryEntity<int, string> ) ticket ).BuildEntity(data);
+                return ticket;
             }
 
             return null;
@@ -134,10 +114,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         {
             List<IMyTicket> tickets = new List<IMyTicket>();
 
-            using ( StreamReader file = new StreamReader(filePath) )
+            foreach ( string data in file.ReadLines() )
             {
                 IMyRepositoryEntity<int, string> ticket = Factory.CreateDefaultParkingTicket() as IMyRepositoryEntity<int, string>;
-                ticket.BuildEntity(file.ReadLine());
+                ticket.BuildEntity(data);
 
                 tickets.Add(ticket as IMyTicket);
             }
@@ -164,12 +144,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         {
             if ( GetDataByIdentifier(_data.ID) == null )
             {
-                using ( StreamWriter file = new StreamWriter(filePath, true) )
-                {
-                    string lineContent = _data.SaveEntity();
-
-                    file.WriteLine(lineContent);
-                }
+                file.WriteLine(_data.SaveEntity(), true);
 
                 return true;
             }
@@ -200,28 +175,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         {
             if ( GetDataByIdentifier(_data.ID) != null )
             {
-                using ( StreamReader file = new StreamReader(filePath) )
-                {
-                    string line = file.ReadLine();
-
-                    if ( line.Contains(_data.ID.ToString()) )
-                    {
-                        string updatedLine = _data.SaveEntity();
-
-                        file.Close();
-                        StreamReader fullFile = new StreamReader(filePath);
-                        string fileContent = fullFile.ReadToEnd();
-                        fullFile.Close();
-                        fileContent = fileContent.Replace(line, updatedLine);
-
-                        using ( StreamWriter writer = new StreamWriter(filePath) )
-                        {
-                            writer.Write(fileContent);
-                        }
-
-                        return true;
-                    }
-                }
+                file.UpdateLine(_data.SaveEntity(), file.GetLineNumber(file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_data.ID)}")));
             }
 
             return false;
