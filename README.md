@@ -158,6 +158,25 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - ID is now saves as "ID[id]" in file. _Example: "ID1"_
   - **Changes to `ParkAndWash`**
     - Removed `ConvertGeneric` method, as it's no longer needed. The `Oiski.Common.Generic.CastGeneric` serves as a replacement
+- **[v0.10.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.10.0)**
+  - **Implemented `CarWashService`**
+    - Ability to store Car Washes
+    - Ability to Add/Remove Car Washes
+    - Ability to request a car wash
+    - Ability to cancel Car Washes that are running
+    - Ability to find Car Washes based on Predicate
+    - Ability to find a collection of Car Washes based on predicate
+    - Ability to Validate Car Washes
+    - Ability to change Service ID
+    - Introduced `IMyCarWash` Interface
+    - Introduced `CarWash` abstract class
+    - Introduced `BronzeWash` class
+    - Introduced `SilverWash` class
+    - Introduced `GoldWash` class
+    - Introduced `CarWashType` enum
+    - Introduced `CarWashState` Enum
+  - **Fixed**
+    - Corrected a spelling mistake in `IMyServiceCollection`
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
