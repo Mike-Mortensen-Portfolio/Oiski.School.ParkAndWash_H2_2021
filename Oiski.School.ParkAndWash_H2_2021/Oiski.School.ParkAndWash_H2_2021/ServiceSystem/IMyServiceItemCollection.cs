@@ -15,6 +15,6 @@ namespace Oiski.School.ParkAndWash_H2_2021
         void AddServiceItem (T _item);
         bool RemoveServiceItem (T _item);
         T FindServiceItem (Predicate<T> _predicate);
-        IReadOnlyList<T> FindAllServiceItems (Predicate<T> Predicate);
+        IReadOnlyList<T> FindAllServiceItems (Predicate<T> _predicate);
     }
 }

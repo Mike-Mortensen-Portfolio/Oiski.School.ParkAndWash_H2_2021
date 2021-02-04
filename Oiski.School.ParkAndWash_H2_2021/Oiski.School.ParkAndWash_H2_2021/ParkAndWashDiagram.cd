@@ -6,13 +6,13 @@
   <Class Name="Oiski.School.ParkAndWash_H2_2021.ParkAndWash">
     <Position X="0.5" Y="3.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ggAAAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAAIIIAAAQ=</HashCode>
+      <HashCode>ggAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIIIAAAQ=</HashCode>
       <FileName>ParkAndWash.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingSpot" BaseTypeListCollapsed="true">
-    <Position X="21.25" Y="12.5" Width="2.5" />
+    <Position X="21.5" Y="12.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAgAAAAAAABAAAAAAAAAAAQQAAAIBAAAA=</HashCode>
       <FileName>Parking\ParkingSpot.cs</FileName>
@@ -20,11 +20,12 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingService" BaseTypeListCollapsed="true">
-    <Position X="21.25" Y="5.75" Width="2.5" />
+    <Position X="21.5" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAgAAAACAAAAIgABAAAAAAAQAgAAAAIAAAgAAg=</HashCode>
       <FileName>Parking\ParkingService.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Factory">
     <Position X="4.5" Y="0.5" Width="2.75" />
@@ -34,7 +35,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.TicketService">
-    <Position X="27" Y="5.75" Width="2.5" />
+    <Position X="29.75" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAgAAAACAAAAIgABAAAAAAAQAgAAAAIAAAgAAg=</HashCode>
       <FileName>Ticketing\TicketService.cs</FileName>
@@ -42,7 +43,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.ParkingTicket">
-    <Position X="27" Y="15" Width="2.5" />
+    <Position X="27.25" Y="15" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAIAAACAQAEQAAAAQAAAAABAEAA=</HashCode>
       <FileName>Ticketing\ParkingTicket.cs</FileName>
@@ -52,7 +53,7 @@
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.TicketRepository">
     <Position X="12.75" Y="3" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAQBAAAEA=</HashCode>
+      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAABAAAQBAAAEA=</HashCode>
       <FileName>Ticketing\TicketRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -60,27 +61,27 @@
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Parking.ParkingRepository">
     <Position X="9.25" Y="3" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAAAAAAQBAAAEA=</HashCode>
+      <HashCode>AAAAAAAEEAAAAAAAAAAAAAAAAAgAAEAABAAAQBAAAEA=</HashCode>
       <FileName>Parking\ParkingRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.ParkingChargeTicket">
-    <Position X="27.25" Y="19" Width="2" />
+    <Position X="27.5" Y="19" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAQAAAAAAAAAAAEAAAAAQAAAAABAEAA=</HashCode>
       <FileName>Ticketing\ParkingChargeTicket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.ParkingWashTicket">
-    <Position X="24.75" Y="19" Width="1.75" />
+    <Position X="25" Y="19" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAABAEAA=</HashCode>
       <FileName>Ticketing\ParkingWashTicket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.ParkingServiceTicket">
-    <Position X="30" Y="19" Width="1.75" />
+    <Position X="30.25" Y="19" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAABAEAA=</HashCode>
       <FileName>Ticketing\ParkingServiceTicket.cs</FileName>
@@ -100,8 +101,45 @@
       <FileName>ServiceSystem\ServiceDuplicateException.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashService">
+    <Position X="39.25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAgAAAACAAAAIgABAAAAAAAQAgAAAAIAAAgAAg=</HashCode>
+      <FileName>Washing\CarWashService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWash">
+    <Position X="39.25" Y="13.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADAAACAAkAABAgAAQAQAAAAAAgAEQQAABABAAAA=</HashCode>
+      <FileName>Washing\CarWash.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.BronzeWash">
+    <Position X="35.75" Y="19" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAA=</HashCode>
+      <FileName>Washing\BronzeWash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.SilverWash">
+    <Position X="39.25" Y="19" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAA=</HashCode>
+      <FileName>Washing\SilverWash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.GoldWash">
+    <Position X="42.75" Y="19" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAA=</HashCode>
+      <FileName>Washing\GoldWash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Parking.IMyParkingSpot">
-    <Position X="21.25" Y="10.25" Width="2.5" />
+    <Position X="21.5" Y="10.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAgAAAAAAABAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Parking\IMyParkingSpot.cs</FileName>
@@ -122,59 +160,87 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyServiceBase">
-    <Position X="22.75" Y="1" Width="2.25" />
+    <Position X="28.25" Y="1" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>ServiceSystem\IMyServiceBase.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyServiceItemCollection&lt;T&gt;">
-    <Position X="25.75" Y="0.5" Width="2" />
+    <Position X="31.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAIAAAAAAAAAAQAgAAAAAAAAAAAg=</HashCode>
       <FileName>ServiceSystem\IMyServiceItemCollection.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyService&lt;T&gt;" BaseTypeListCollapsed="true">
-    <Position X="24.25" Y="3.25" Width="2.25" />
+    <Position X="29.75" Y="3.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAABAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>ServiceSystem\IMyService.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.IMyTicket">
-    <Position X="27" Y="10.25" Width="2.5" />
+    <Position X="29.75" Y="10.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Ticketing\IMyTicket.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.IMyParkingTicket">
-    <Position X="27" Y="12.75" Width="2.5" />
+    <Position X="27.25" Y="12.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAQAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ticketing\IMyParkingTicket.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.IMyRepositoryEntity&lt;IDType, SaveType&gt;">
-    <Position X="16.75" Y="0.5" Width="2.75" />
+    <Position X="16.75" Y="0.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAABAAAA=</HashCode>
       <FileName>RepositorySystem\IMyRepositoryEntity.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.IMyCarWashTicket">
+    <Position X="32.25" Y="12.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ticketing\IMyCarWashTicket.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Oiski.School.ParkAndWash_H2_2021.Washing.IMyCarWash">
+    <Position X="39.25" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgAABAAAAQAQAAAAAAAAEAQAABAAAAAA=</HashCode>
+      <FileName>Washing\IMyCarWash.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="Oiski.School.ParkAndWash_H2_2021.Parking.SpotType">
-    <Position X="21.25" Y="15.75" Width="2.5" />
+    <Position X="21.5" Y="15.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAACAAAI=</HashCode>
       <FileName>Parking\SpotType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Oiski.School.ParkAndWash_H2_2021.Ticketing.ParkingTicketType">
-    <Position X="27.25" Y="22.25" Width="2" />
+    <Position X="27.5" Y="22.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAgAAEAAAAAACAAA=</HashCode>
       <FileName>Ticketing\ParkingTicketType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashState">
+    <Position X="39.25" Y="21.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAJABAAABIAAAIABAAAAAAAAAAAAAAAAAAAEAAAAhA=</HashCode>
+      <FileName>Washing\CarWashState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashType">
+    <Position X="39.25" Y="25.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Washing\CarWashType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
