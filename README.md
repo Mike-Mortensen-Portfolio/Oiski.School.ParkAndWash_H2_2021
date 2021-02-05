@@ -197,7 +197,17 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Converted old class object based `CarWash` object creation to the new system, which is based on instance objects
   - **Changes to `ParkingWashTicket`**
     - Changed Wash Type property to make use of `CarWashType` enum instead of being a `string`
-
+- **[v0.11.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.11.0)**
+  - **Changes to Ticket System**
+    - Introduced `CarWashTicket` class
+    - Introduced `Ticket` class
+    - Introduced `IMyPropertyAccessor` interface
+    - Added Type Property to Tickets
+  - **Changes to `TicketRepository`**
+    - Extended `TicketRepository` to include all current and future Ticket types
+  - **Changes to `Factory`**
+    - Ability to create default Tickets of any type 
+    - Ability to create Car Wash Tickets
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
