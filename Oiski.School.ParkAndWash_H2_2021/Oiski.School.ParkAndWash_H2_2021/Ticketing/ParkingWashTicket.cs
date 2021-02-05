@@ -19,6 +19,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         public ParkingWashTicket ( int _parkingSpotID, decimal _pricePrHour, CarWashType _washType ) : base (_parkingSpotID, _pricePrHour)
         {
             WashType = _washType;
+            TicketType = typeof (ParkingWashTicket);
         }
 
         public CarWashType WashType { get; set; }
@@ -58,10 +59,12 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="RankException"></exception>
         public override KeyValuePair<string, object>[] GetTicketProperties ()
         {
-            KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[ 4 ];
+            int basePropertyCount = base.GetTicketProperties ().Length;
+
+            KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[ basePropertyCount + 1 ];
 
             base.GetTicketProperties ().CopyTo (properties, 0);
-            properties[ 3 ] = KeyValuePair.Create ("ChargeCostPrKWH", ( object ) WashType);
+            properties[ basePropertyCount - 1 ] = KeyValuePair.Create ("ChargeCostPrKWH", ( object ) ParkingSpotID);
 
             return properties;
         }
