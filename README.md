@@ -177,11 +177,27 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Introduced `CarWashState` Enum
   - **Fixed**
     - Corrected a spelling mistake in `IMyServiceCollection`
-- [v0.10.1 - Factory Extension](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.10.1)
+- **[v0.10.1 - Factory Extension](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.10.1)**
   - **Changes to `Factory`**
     - Ability to create Car Washes
     - Ability to create Car Wash Service
     - Prepared for extension of Tickets to include `IMyCarWashTicket` objects
+- **[v0.10.2 - Revision 4](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.10.2)**
+  - **Changes to the Car Wash System**
+    - Deleted BronzeWash class
+    - Deleted SilverWash class
+    - Deleted GoldWash class
+  - **Changes to `CarWash`**
+    - Generalized `CarWash` class and removed abstract modifier
+    - Introduced `CarWashRunningException`
+    - Car Wash rutines are now detached from class objects and moved to instance objects
+  - **Changes to `CarWashService`**
+    - Add Service Item method now throws the proper exception
+  - **Changes to `Factory`**
+    - Converted old class object based `CarWash` object creation to the new system, which is based on instance objects
+  - **Changes to `ParkingWashTicket`**
+    - Changed Wash Type property to make use of `CarWashType` enum instead of being a `string`
+
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
