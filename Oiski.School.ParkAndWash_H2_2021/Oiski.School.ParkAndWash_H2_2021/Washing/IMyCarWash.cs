@@ -24,7 +24,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// The current <see cref="CarWashState"/> that defines which process, if any, the <see cref="IMyCarWash"/> is currently doing
         /// </summary>
         CarWashState State { get; }
-        CarWashType Type { get; }
+        /// <summary>
+        /// The rutine the <see cref="IMyCarWash"/> should undergo
+        /// </summary>
+        CarWashState[] Rutine { get; set; }
 
         /// <summary>
         /// Begin the washing process

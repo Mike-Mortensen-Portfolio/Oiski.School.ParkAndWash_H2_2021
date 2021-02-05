@@ -9,7 +9,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
     /// <summary>
     /// Defines the <see langword="base"/> type for any <see cref="IMyCarWash"/> <see langword="object"/>
     /// </summary>
-    internal abstract class CarWash : IMyCarWash, IMyRepositoryEntity<int, string>
+    internal class CarWash : IMyCarWash, IMyRepositoryEntity<int, string>
     {
         private static int washCount = 0;
 
@@ -21,6 +21,26 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             ID = ++washCount;
             CancelSource = new CancellationTokenSource ();
             CancelToken = CancelSource.Token;
+            Name = $"Car Wash {ID}";
+            Rutine = new CarWashState[] { CarWashState.Completed };
+        }
+
+        public CarWash ( string _name )
+        {
+            ID = ++washCount;
+            CancelSource = new CancellationTokenSource ();
+            CancelToken = CancelSource.Token;
+            Name = _name;
+            Rutine = new CarWashState[] { CarWashState.Completed };
+        }
+
+        public CarWash ( string _name, CarWashState[] _rutine )
+        {
+            ID = ++washCount;
+            CancelSource = new CancellationTokenSource ();
+            CancelToken = CancelSource.Token;
+            Name = _name;
+            Rutine = _rutine;
         }
 
         public int ID { get; set; }
@@ -50,7 +70,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <summary>
         /// The type of wash process the <see cref="CarWash"/> will undergo
         /// </summary>
-        public virtual CarWashType Type { get; } = CarWashType.Bronze;
+        public CarWashState[] Rutine { get; set; }
 
         /// <summary>
         /// Rebuild <see langword="this"/> instance based on the passed in <see langword="string"/> <paramref name="_values"/>
@@ -84,24 +104,43 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// </summary>
         public async void StartWashAsync ()
         {
-            IsRunning = true;
-            try
+            if ( !IsRunning )
             {
+                IsRunning = true;
                 await RunWashProcess ();
+                IsRunning = false;
             }
-            catch ( AggregateException _e )
+            else
             {
-
-                if ( _e.InnerException is OperationCanceledException )
-                {
-                    State = CarWashState.Aborted;
-                }
+                throw new CarWashRunningException ($"Car Wash with ID: {ID} is already running!", State, ProcessProgress);
             }
-
-            IsRunning = false;
         }
 
-        protected abstract Task RunWashProcess ();
+        /// <summary>
+        /// Simulate a car wash process
+        /// </summary>
+        /// <returns></returns>
+        protected Task RunWashProcess ()
+        {
+            return Task.Factory.StartNew (() =>
+            {
+                int index = 0;
+                CarWashState trueState = State;
+                while ( trueState != CarWashState.Completed )
+                {
+
+                    if ( CheckIfShouldAbort () )
+                    {
+                        return;
+                    }
+
+                    if ( trueState == CarWashState.Proceeding || State == CarWashState.NotRunning )
+                    {
+                        trueState = Process (Rutine[ index++ ]);
+                    }
+                }
+            });
+        }
 
         /// <summary>
         /// Simulates a car wash process. The process is defined by the <see cref="CarWashState"/> <paramref name="_process"/>
@@ -112,15 +151,34 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         {
             State = _process;
 
-            Console.WriteLine ($"State: {_process}");
             Thread.Sleep (( int ) _process);
 
             if ( _process == CarWashState.Drying )
             {
+                State = CarWashState.Completed;
                 return CarWashState.Completed;
             }
 
             return CarWashState.Proceeding;
+        }
+
+        /// <summary>
+        /// Will check if a cancellation request has been thrown and aborts the wash process if so
+        /// </summary>
+        protected virtual bool CheckIfShouldAbort ()
+        {
+            try
+            {
+                CancelToken.ThrowIfCancellationRequested ();
+            }
+            catch ( OperationCanceledException )
+            {
+
+                State = CarWashState.Aborted;
+                return true;
+            }
+
+            return false;
         }
     }
 }
