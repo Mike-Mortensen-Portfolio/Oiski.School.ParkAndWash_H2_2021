@@ -52,7 +52,16 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <summary>
         /// How far the washing process has come, represented as percentage 
         /// </summary>
-        public double ProcessProgress { get; set; }
+        public double ProcessProgress
+        {
+            get
+            {
+                return currentTickCount / totalWashDuration * 100;
+            }
+        }
+        private double totalWashDuration = 0;
+        private double currentTickCount = 0;
+
         /// <summary>
         /// The current <see cref="CarWashState"/> that defines which process, if any, the <see cref="CarWash"/> is currently doing
         /// </summary>
@@ -107,6 +116,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             if ( !IsRunning )
             {
                 IsRunning = true;
+                foreach ( CarWashState state in Rutine )
+                {
+                    totalWashDuration += TimeSpan.FromMilliseconds (( int ) state).TotalSeconds;
+                }
                 await RunWashProcess ();
                 IsRunning = false;
             }
@@ -151,7 +164,17 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         {
             State = _process;
 
-            Thread.Sleep (( int ) _process);
+            #region Caclulate Process
+            double seconds = TimeSpan.FromMilliseconds (( int ) _process).TotalSeconds;
+            double tick = 0;
+            do
+            {
+                Thread.Sleep (1000);
+                tick++;
+                currentTickCount++;
+
+            } while ( tick < seconds );
+            #endregion
 
             if ( _process == CarWashState.Drying )
             {
