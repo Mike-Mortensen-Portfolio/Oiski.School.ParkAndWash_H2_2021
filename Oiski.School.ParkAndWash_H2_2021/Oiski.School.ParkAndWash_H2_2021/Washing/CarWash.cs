@@ -46,6 +46,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         public int ID { get; set; }
         public string Name { get; set; }
         /// <summary>
+        /// The amount of time the <see cref="CarWash"/> has been used
+        /// </summary>
+        public int TimesRun { get; private set; }
+        /// <summary>
         /// Returns <see langword="true"/> if the washing process is running; Otherwise, <see langword="false"/>
         /// </summary>
         public bool IsRunning { get; set; }
@@ -88,7 +92,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <exception cref="InvalidDataException"></exception>
         public void BuildEntity ( string _data )
         {
-            throw new NotImplementedException ();
+            string[] values = _data.Split (",");
+
+            if ( int.TryParse (values[ 0 ].Replace ("ID", string.Empty), out int _id) && int.TryParse (values[ 2 ], out int _timesRun) )
+            {
+                ID = _id;
+                Name = values[ 1 ];
+                TimesRun = _timesRun;
+            }
         }
 
         /// <summary>
@@ -105,7 +116,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
         public string SaveEntity ()
         {
-            throw new NotImplementedException ();
+            return $"ID{ID},{Name}{TimesRun}";
         }
 
         /// <summary>
@@ -120,6 +131,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
                 {
                     totalWashDuration += TimeSpan.FromMilliseconds (( int ) state).TotalSeconds;
                 }
+                TimesRun++;
                 await RunWashProcess ();
                 IsRunning = false;
             }

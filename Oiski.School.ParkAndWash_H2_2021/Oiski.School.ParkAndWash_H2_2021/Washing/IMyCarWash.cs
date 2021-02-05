@@ -13,6 +13,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         int ID { get; }
         string Name { get; set; }
         /// <summary>
+        /// The amount of washes the <see cref="IMyCarWash"/> has done
+        /// </summary>
+        int TimesRun { get; }
+        /// <summary>
         /// Returns <see langword="true"/> if the washing process is running; Otherwise, <see langword="false"/>
         /// </summary>
         bool IsRunning { get; }
