@@ -48,7 +48,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             }
             else
             {
-                throw new ServiceDuplicateException ($"An item with ID: {_item.ID} already exists in Parking Service");
+                throw new ServiceDuplicateException ($"An item with ID: {_item.ID} already exists in Car Wash Service");
             }
         }
 
@@ -129,11 +129,30 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <typeparam name="ValueType">Must be a <see cref="CarWashType"/> <see langword="value"/></typeparam>
         /// <param name="_value">The <see cref="CarWashType"/> <see langword="value"/> of the requested <see cref="IMyCarWash"/></param>
         /// <returns>An <see cref="IMyCarWash"/> that is not running and matches the <see cref="CarWashType"/> <paramref name="_value"/>; Otherwise <see langword="null"/></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         /// <exception cref="InvalidCastException"></exception>
         public IMyCarWash RequestServiceItem<ValueType> ( ValueType _value )
         {
-            return FindServiceItem (item => item.Type == Converter.CastGeneric<ValueType, CarWashType> (_value) && item.State == CarWashState.NotRunning);
+            IMyCarWash wash = FindServiceItem (item => item.State == CarWashState.NotRunning);
+            if ( wash != null )
+            {
+                switch ( Converter.CastGeneric<ValueType, CarWashType> (_value) )
+                {
+                    case CarWashType.Gold:
+                        wash.Rutine = new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Blasting, CarWashState.Drying };
+                        break;
+                    case CarWashType.Silver:
+                        wash.Rutine = new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Blasting, CarWashState.Drying };
+                        break;
+                    case CarWashType.Bronze:
+                        wash.Rutine = new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Waxing, CarWashState.Blasting, CarWashState.Drying };
+                        break;
+                    default:
+                        throw new ArgumentException ($"Type: {Converter.CastGeneric<ValueType, CarWashType> (_value)} is not valid in this context!");
+                }
+            }
+
+            return null;
         }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Comment CommentText="Exceptions">
-    <Position X="5.417" Y="3.25" Height="0.291" Width="0.794" />
+    <Position X="5.417" Y="4.25" Height="0.291" Width="0.794" />
   </Comment>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.ParkAndWash">
     <Position X="0.5" Y="3.25" Width="2.25" />
@@ -30,7 +30,7 @@
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Factory">
     <Position X="4.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAYAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAMAAAQA=</HashCode>
+      <HashCode>BAAAAAYBAAAAAAAAgCAAAAAEAQAAAAAAAAAAAMAAAQA=</HashCode>
       <FileName>Factory.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -88,21 +88,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.PropertyNotFoundException&lt;T&gt;">
-    <Position X="4.25" Y="5.75" Width="3.25" />
+    <Position X="4.25" Y="6.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAACAAA=</HashCode>
       <FileName>PropertyNotFoundException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.ServiceDuplicateException">
-    <Position X="4.25" Y="3.75" Width="3.25" />
+    <Position X="4.25" Y="4.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ServiceSystem\ServiceDuplicateException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashService">
-    <Position X="39.25" Y="5.75" Width="2.5" />
+    <Position X="35.75" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAgAAAACAAAAIgABAAAAAAAQAgAAAAIAAAgAAg=</HashCode>
       <FileName>Washing\CarWashService.cs</FileName>
@@ -110,32 +110,18 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWash">
-    <Position X="39.25" Y="13.75" Width="2.5" />
+    <Position X="35.75" Y="13.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAADAAACAAkAABAgAAQAQAAAAAAgAEQQAABABAAAA=</HashCode>
+      <HashCode>AAAAADAAACBAkAABAgAAQAQAAAAAAhAEQAAABABAAAA=</HashCode>
       <FileName>Washing\CarWash.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.BronzeWash">
-    <Position X="35.75" Y="19" Width="2.5" />
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashRunningException">
+    <Position X="4.25" Y="9.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAA=</HashCode>
-      <FileName>Washing\BronzeWash.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.SilverWash">
-    <Position X="39.25" Y="19" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAA=</HashCode>
-      <FileName>Washing\SilverWash.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.GoldWash">
-    <Position X="42.75" Y="19" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAA=</HashCode>
-      <FileName>Washing\GoldWash.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Washing\CarWashRunningException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Parking.IMyParkingSpot">
@@ -209,9 +195,9 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Washing.IMyCarWash">
-    <Position X="39.25" Y="10.25" Width="2.5" />
+    <Position X="35.75" Y="10.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAgAABAAAAQAQAAAAAAAAEAQAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAgAABAAAAQAQAAAAAABAEAAAABAAAAAA=</HashCode>
       <FileName>Washing\IMyCarWash.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -230,14 +216,14 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashState">
-    <Position X="39.25" Y="21.75" Width="2.5" />
+    <Position X="35.75" Y="19.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>IAAJABAAABIAAAIABAAAAAAAAAAAAAAAAAAAEAAAAhA=</HashCode>
       <FileName>Washing\CarWashState.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWashType">
-    <Position X="39.25" Y="25.25" Width="2.5" />
+    <Position X="35.75" Y="22.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
       <FileName>Washing\CarWashType.cs</FileName>

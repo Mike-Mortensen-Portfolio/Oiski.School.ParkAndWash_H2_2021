@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oiski.School.ParkAndWash_H2_2021.Washing;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,12 +16,12 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <param name="_parkingSpotID"></param>
         /// <param name="_pricePrHour"></param>
         /// <param name="_chargeCostPrKWH"></param>
-        public ParkingWashTicket (int _parkingSpotID, decimal _pricePrHour, string _washType) : base(_parkingSpotID, _pricePrHour)
+        public ParkingWashTicket ( int _parkingSpotID, decimal _pricePrHour, CarWashType _washType ) : base (_parkingSpotID, _pricePrHour)
         {
             WashType = _washType;
         }
 
-        public string WashType { get; set; }
+        public CarWashType WashType { get; set; }
 
         /// <summary>
         /// Save the current state of the <see cref="ParkingWashTicket"/>
@@ -28,20 +29,21 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <returns>The current state of <see langword="this"/> <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> as an instance of type <typeparamref name="SaveType"/></returns>
         public override string SaveEntity ()
         {
-            return $"{base.SaveEntity()},{WashType}";
+            return $"{base.SaveEntity ()},{( int ) WashType}";
         }
 
         /// <summary>
         /// Restore a previous state of the <see cref="ParkingWashTicket"/> based on the passed in <typeparamref name="SaveType"/> <see langword="value"/>
         /// </summary>
         /// <param name="_data"></param>
-        public override void BuildEntity (string _values)
+        public override void BuildEntity ( string _values )
         {
-            base.BuildEntity(_values);
+            base.BuildEntity (_values);
 
-            string[] values = _values.Split(",");
+            string[] values = _values.Split (",");
 
-            WashType = values[0];
+            int.TryParse (values[ values.Length - 1 ], out int _type);
+            WashType = ( CarWashType ) _type;
         }
 
         /// <summary>
@@ -56,10 +58,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="RankException"></exception>
         public override KeyValuePair<string, object>[] GetTicketProperties ()
         {
-            KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[4];
+            KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[ 4 ];
 
-            base.GetTicketProperties().CopyTo(properties, 0);
-            properties[3] = KeyValuePair.Create("ChargeCostPrKWH", ( object ) WashType);
+            base.GetTicketProperties ().CopyTo (properties, 0);
+            properties[ 3 ] = KeyValuePair.Create ("ChargeCostPrKWH", ( object ) WashType);
 
             return properties;
         }
@@ -71,13 +73,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <param name="_value">The <see langword="value"/> to assign the property</param>
         /// <exception cref="InvalidCastException"></exception>
         /// <exception cref="PropertyNotFoundException{T}"></exception>
-        public override void SetProperty (string _propertyName, object _value)
+        public override void SetProperty ( string _propertyName, object _value )
         {
             object property = null;
 
             try
             {
-                base.SetProperty(_propertyName, _value);
+                base.SetProperty (_propertyName, _value);
             }
             catch ( PropertyNotFoundException<IMyParkingTicket> _propertyException )
             {
@@ -85,9 +87,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
                 {
                     switch ( _propertyName )
                     {
-                        case "ChargeCostPrKWH":
+                        case "WashType":
                             property = WashType;
-                            WashType = ( string ) _value;
+                            WashType = ( CarWashType ) _value;
                             break;
                         default:
                             throw _propertyException;
@@ -95,7 +97,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
                 }
                 catch ( InvalidCastException _invalidException )
                 {
-                    throw new InvalidCastException($"Invalid Property Value: type of ({property})<{property.GetType()}> is not equal to type of ({_value})<{_value.GetType()}>", _invalidException);
+                    throw new InvalidCastException ($"Invalid Property Value: type of ({property})<{property.GetType ()}> is not equal to type of ({_value})<{_value.GetType ()}>", _invalidException);
                 }
             }
         }

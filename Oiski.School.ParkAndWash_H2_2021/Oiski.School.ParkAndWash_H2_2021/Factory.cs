@@ -76,7 +76,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
             {
                 ParkingTicketType.Standard => new ParkingTicket (0, 0),
                 ParkingTicketType.ParkingCharge => new ParkingChargeTicket (0, 0, 0),
-                ParkingTicketType.ParkingWash => new ParkingWashTicket (0, 0, string.Empty),
+                ParkingTicketType.ParkingWash => new ParkingWashTicket (0, 0, CarWashType.Bronze),
                 ParkingTicketType.ParkingService => new ParkingServiceTicket (0, 0, string.Empty),
                 _ => throw new ArgumentException ($"Type: {_type} is not valid in this context!"),
             };
@@ -102,11 +102,11 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="_name"></param>
+        /// <param name="_name">The name of the car wash</param>
         /// <returns>A new instance of a basic <see cref="IMyCarWash"/> where the name is set</returns>
         public static IMyCarWash CreateCarWash ( string _name )
         {
-            return new BronzeWash (_name);
+            return new CarWash (_name, new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Blasting, CarWashState.Drying });
         }
         /// <summary>
         /// 
@@ -119,15 +119,15 @@ namespace Oiski.School.ParkAndWash_H2_2021
         {
             return _type switch
             {
-                CarWashType.Bronze => new BronzeWash (_name),
-                CarWashType.Silver => new SilverWash (_name),
-                CarWashType.Gold => new GoldWash (_name),
+                CarWashType.Bronze => new CarWash (_name, new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Blasting, CarWashState.Drying }),
+                CarWashType.Silver => new CarWash (_name, new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Blasting, CarWashState.Drying }),
+                CarWashType.Gold => new CarWash (_name, new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Waxing, CarWashState.Blasting, CarWashState.Drying }),
                 _ => throw new ArgumentException ($"Type: {_type} is not valid in this context!")
             };
         }
         internal static IMyCarWash CreateDefaultCarWash ()
         {
-            return new BronzeWash ();
+            return new CarWash ();
         }
     }
 }
