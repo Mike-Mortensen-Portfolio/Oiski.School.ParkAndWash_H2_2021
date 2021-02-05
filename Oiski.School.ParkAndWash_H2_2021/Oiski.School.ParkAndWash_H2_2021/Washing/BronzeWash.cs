@@ -11,11 +11,19 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
     internal class BronzeWash : CarWash
     {
         /// <summary>
-        /// Initializes a new instance of type <see cref="BronzeWash"/>
+        /// Initialize a new instance of type <see cref="BronzeWash"/>
         /// </summary>
-        public BronzeWash () : base ()
+        public BronzeWash ()
         {
 
+        }
+
+        /// <summary>
+        /// Initializes a new instance of type <see cref="BronzeWash"/> where the name is set
+        /// </summary>
+        public BronzeWash ( string _name ) : base ()
+        {
+            Name = _name;
         }
 
         public override CarWashType Type { get; } = CarWashType.Bronze;

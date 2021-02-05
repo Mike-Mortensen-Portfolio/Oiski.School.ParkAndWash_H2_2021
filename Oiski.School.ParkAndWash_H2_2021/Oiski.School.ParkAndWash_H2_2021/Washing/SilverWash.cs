@@ -11,11 +11,19 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
     internal class SilverWash : CarWash
     {
         /// <summary>
-        /// Initializes a new instance of type <see cref="SilverWash"/>
+        /// Initialize a new instance of type <see cref="SilverWash"/>
         /// </summary>
-        public SilverWash () : base ()
+        public SilverWash ()
         {
 
+        }
+
+        /// <summary>
+        /// Initializes a new instance of type <see cref="SilverWash"/> where the name is set
+        /// </summary>
+        public SilverWash (string _name) : base ()
+        {
+            Name = _name;
         }
 
         public override CarWashType Type { get; } = CarWashType.Silver;
