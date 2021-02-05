@@ -17,7 +17,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// </summary>
         private TicketRepository ()
         {
-            file = new FileHandler(filePath);
+            file = new FileHandler (filePath);
         }
 
         private static TicketRepository link = null;
@@ -32,14 +32,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             {
                 if ( link == null )
                 {
-                    link = new TicketRepository();
+                    link = new TicketRepository ();
                 }
 
                 return link;
             }
         }
 
-        private readonly string filePath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\Tickets.csv";
+        private readonly string filePath = $"{Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location)}\\Tickets.csv";
 
         /// <summary>
         /// Delete an <see cref="IMyTicket"/> entry in <strong>data storage</strong>
@@ -61,11 +61,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="PathTooLongException"></exception>
         /// <exception cref="System.Security.SecurityException"></exception>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        public bool DeleteData<IDType> (IMyRepositoryEntity<IDType, string> _entity)
+        public bool DeleteData<IDType> ( IMyRepositoryEntity<IDType, string> _entity )
         {
-            if ( GetDataByIdentifier(_entity.ID) != null )
+            if ( GetDataByIdentifier (_entity.ID) != null )
             {
-                file.DeleteLine(file.GetLineNumber(file.FindLine(_entity.ID.ToString())));
+                file.DeleteLine (file.GetLineNumber (file.FindLine (_entity.ID.ToString ())));
                 return true;
             }
 
@@ -85,14 +85,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="InvalidCastException"></exception>
         /// <exception cref="IOException"></exception>
         /// <exception cref="OutOfMemoryException"></exception>
-        public IMyTicket GetDataByIdentifier<IDType> (IDType _id)
+        public IMyTicket GetDataByIdentifier<IDType> ( IDType _id )
         {
-            string data = file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_id)}");
+            string data = file.FindLine ($"ID{Common.Generics.Converter.CastGeneric<IDType, int> (_id)}");
 
             if ( data != null )
             {
-                IMyTicket ticket = Factory.CreateDefaultParkingTicket();
-                ( ( IMyRepositoryEntity<int, string> ) ticket ).BuildEntity(data);
+                IMyTicket ticket = Factory.CreateDefaultTicket (ExtractParameter (data, "Type"));
+                ( ( IMyRepositoryEntity<int, string> ) ticket ).BuildEntity (data);
                 return ticket;
             }
 
@@ -112,14 +112,17 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="OutOfMemoryException"></exception>
         public IEnumerable<IMyTicket> GetEnumerable ()
         {
-            List<IMyTicket> tickets = new List<IMyTicket>();
+            List<IMyTicket> tickets = new List<IMyTicket> ();
 
-            foreach ( string data in file.ReadLines() )
+            foreach ( string data in file.ReadLines () )
             {
-                IMyRepositoryEntity<int, string> ticket = Factory.CreateDefaultParkingTicket() as IMyRepositoryEntity<int, string>;
-                ticket.BuildEntity(data);
+                if ( data != string.Empty )
+                {
+                    IMyRepositoryEntity<int, string> ticket = Factory.CreateDefaultTicket (ExtractParameter (data, "Type")) as IMyRepositoryEntity<int, string>;
+                    ticket.BuildEntity (data);
 
-                tickets.Add(ticket as IMyTicket);
+                    tickets.Add (ticket as IMyTicket);
+                }
             }
 
             return tickets;
@@ -140,11 +143,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="PathTooLongException"></exception>
         /// <exception cref="System.Security.SecurityException"></exception>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        public bool InsertData<IDType> (IMyRepositoryEntity<IDType, string> _data)
+        public bool InsertData<IDType> ( IMyRepositoryEntity<IDType, string> _data )
         {
-            if ( GetDataByIdentifier(_data.ID) == null )
+            if ( string.IsNullOrWhiteSpace (file.FindLine ($"ID{_data.ID}")) )
             {
-                file.WriteLine(_data.SaveEntity(), true);
+                file.WriteLine (_data.SaveEntity (), true);
 
                 return true;
             }
@@ -171,14 +174,24 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="PathTooLongException"></exception>
         /// <exception cref="System.Security.SecurityException"></exception>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        public bool UpdateData<IDType> (IMyRepositoryEntity<IDType, string> _data)
+        public bool UpdateData<IDType> ( IMyRepositoryEntity<IDType, string> _data )
         {
-            if ( GetDataByIdentifier(_data.ID) != null )
+            if ( !string.IsNullOrWhiteSpace (file.FindLine ($"ID{_data.ID}")) )
             {
-                file.UpdateLine(_data.SaveEntity(), file.GetLineNumber(file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_data.ID)}")));
+                file.UpdateLine (_data.SaveEntity (), file.GetLineNumber (file.FindLine ($"ID{Common.Generics.Converter.CastGeneric<IDType, int> (_data.ID)}")));
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Extract a parameter defined by <paramref name="_parameter"/>
+        /// </summary>
+        /// <param name="_data"></param>
+        /// <returns>A <see langword="string"/> containing the extracted <paramref name="_parameter"/> <see langword="value"/></returns>
+        private string ExtractParameter ( string _data, string _parameter )
+        {
+            return _data.Split (",")[ 0 ].Replace (_parameter, string.Empty);
         }
     }
 }

@@ -53,6 +53,38 @@ namespace Oiski.School.ParkAndWash_H2_2021
         }
 
         /// <summary>
+        /// Create a new instance of an <see cref="IMyTicket"/> based on the type <see langword="string"/> <paramref name="_ticketType"/>
+        /// </summary>
+        /// <param name="_ticketType">The full type name of the ticket. (<i><strong>Note: </strong> Type.FullName</i>)</param>
+        /// <returns>A new instance of type <paramref name="_ticketType"/> if type exists; Otherwise, <see langword="null"/></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="OverflowException"></exception>
+        public static IMyTicket CreateDefaultTicket ( string _ticketType )
+        {
+            if ( _ticketType == typeof (ParkingTicket).FullName )
+            {
+                return CreateDefaultParkingTicket ();
+            }
+            else if ( _ticketType == typeof (ParkingChargeTicket).FullName )
+            {
+                return CreateParkingTicket (ParkingTicketType.ParkingCharge);
+            }
+            else if ( _ticketType == typeof (ParkingServiceTicket).FullName )
+            {
+                return CreateParkingTicket (ParkingTicketType.ParkingService);
+            }
+            else if ( _ticketType == typeof (ParkingWashTicket).FullName )
+            {
+                return CreateParkingTicket (ParkingTicketType.ParkingWash);
+            }
+            else if ( _ticketType == typeof (CarWashTicket).FullName )
+            {
+                return CreateDefaultCarWashTicket ();
+            }
+
+            return null;
+        }
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="_parkingSpotID"></param>
@@ -86,17 +118,32 @@ namespace Oiski.School.ParkAndWash_H2_2021
             return new ParkingTicket ();
         }
 
-        public static IMyTicket CreateCarWashTicket ( int _washID, CarWashType _type )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_washID"></param>
+        /// <param name="_washPrice"></param>
+        /// <param name="_type"></param>
+        /// <returns>A new instance of <see cref="IMyTicket"/> with a linked <see cref="IMyCarWash"/>.</returns>
+        /// <exception cref="OverflowException"></exception>
+        public static IMyTicket CreateCarWashTicket ( int _washID, decimal _washPrice, CarWashType _type )
         {
-            throw new NotImplementedException ();
+            return new CarWashTicket (_washID, _washPrice, _type);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_type"></param>
+        /// <returns>A new instance of <see cref="IMyTicket"/> that matches the passed in <see cref="CarWashType"/></returns>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="OverflowException"></exception>
         public static IMyTicket CreateCarWashTicket ( CarWashType _type )
         {
-            throw new NotImplementedException ();
+            return new CarWashTicket (0, 0, _type);
         }
         internal static IMyTicket CreateDefaultCarWashTicket ()
         {
-            throw new NotImplementedException ();
+            return new CarWashTicket ();
         }
 
         /// <summary>
@@ -104,6 +151,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// </summary>
         /// <param name="_name">The name of the car wash</param>
         /// <returns>A new instance of a basic <see cref="IMyCarWash"/> where the name is set</returns>
+        /// <exception cref="OverflowException"></exception>
         public static IMyCarWash CreateCarWash ( string _name )
         {
             return new CarWash (_name, new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Blasting, CarWashState.Drying });
