@@ -208,10 +208,13 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
   - **Changes to `Factory`**
     - Ability to create default Tickets of any type 
     - Ability to create Car Wash Tickets
-- **[v0.11.1 - Revision](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.11.1)**
+- **[v0.11.1 - Revision 5](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.11.1)**
   - **Changes to `Carwash`**
     - Added the ability to check how far a wash has come, in procentage
-
+- **[v0.11.2 - Revision 6](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.11.2)**
+  - **Changes to `CarWash`**
+    - Ability to keep track of how many times a car wash has been started
+    - Ability to save/ load a Car Wash through the Repository system
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
