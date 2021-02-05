@@ -11,11 +11,19 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
     internal class GoldWash : CarWash
     {
         /// <summary>
-        /// Initializes a new instance of type <see cref="GoldWash"/>
+        /// Initialize a new instance of type <see cref="GoldWash"/>
         /// </summary>
-        public GoldWash () : base ()
+        public GoldWash ()
         {
 
+        }
+
+        /// <summary>
+        /// Initializes a new instance of type <see cref="GoldWash"/> where the name is set
+        /// </summary>
+        public GoldWash ( string _name ) : base ()
+        {
+            Name = _name;
         }
 
         public override CarWashType Type { get; } = CarWashType.Gold;
