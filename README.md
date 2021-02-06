@@ -215,6 +215,11 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
   - **Changes to `CarWash`**
     - Ability to keep track of how many times a car wash has been started
     - Ability to save/ load a Car Wash through the Repository system
+- **[v0.12.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.12.0)**
+  - **Changes to Repositories**
+    - Added `CarWashRepository` class
+  - **Changes to `CarWash`**
+    - Fixed a state save error
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
