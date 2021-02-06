@@ -116,7 +116,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
         public string SaveEntity ()
         {
-            return $"ID{ID},{Name}{TimesRun}";
+            return $"ID{ID},{Name},{TimesRun}";
         }
 
         /// <summary>
