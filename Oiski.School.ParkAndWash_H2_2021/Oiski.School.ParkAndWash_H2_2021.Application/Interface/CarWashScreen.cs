@@ -172,8 +172,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
                             case CarWashType.Bronze:
                                 price = 79.95M;
                                 break;
-                            default:
-                                break;
                         };
 
                         ticket.SetProperty ("WashPrice", price);

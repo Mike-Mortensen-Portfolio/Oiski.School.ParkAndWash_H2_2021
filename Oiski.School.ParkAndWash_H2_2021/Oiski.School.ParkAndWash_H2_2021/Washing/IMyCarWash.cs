@@ -40,6 +40,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <summary>
         /// Abort the washing progress. (<strong>Note: </strong> <i>This will not guarantee that the process is aborted right away! Check <see cref="State"/> to ensure that the process was indeed canceled</i>)
         /// </summary>
-        void CancelWash ();
+        void AbortWash ();
     }
 }

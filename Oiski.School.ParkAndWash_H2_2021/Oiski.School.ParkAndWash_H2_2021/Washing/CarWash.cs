@@ -19,8 +19,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         public CarWash ()
         {
             ID = ++washCount;
-            CancelSource = new CancellationTokenSource ();
-            CancelToken = CancelSource.Token;
             Name = $"Car Wash {ID}";
             Rutine = new CarWashState[] { CarWashState.Completed };
         }
@@ -74,11 +72,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <summary>
         /// The cancellation source method
         /// </summary>
-        protected virtual CancellationTokenSource CancelSource { get; }
+        protected virtual CancellationTokenSource CancelSource { get; private set; }
         /// <summary>
         /// The cancellation token retrived from the <see cref="CancelSource"/> <see langword="object"/>
         /// </summary>
-        protected virtual CancellationToken CancelToken { get; }
+        protected virtual CancellationToken CancelToken { get; private set; }
 
         /// <summary>
         /// The type of wash process the <see cref="CarWash"/> will undergo
@@ -105,9 +103,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <summary>
         /// Abort the washing progress. (<strong>Note: </strong> <i>This will not guarantee that the process is aborted right away! Check <see cref="State"/> to ensure that the process was indeed canceled</i>)
         /// </summary>
-        public virtual void CancelWash ()
+        public virtual void AbortWash ()
         {
-            CancelSource.Cancel ();
+            if ( CancelSource != null )
+            {
+                CancelSource.Cancel ();
+
+                CancelSource = null;
+            }
         }
 
         /// <summary>
@@ -127,6 +130,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         {
             if ( !IsRunning )
             {
+                CancelSource = new CancellationTokenSource ();
+                CancelToken = CancelSource.Token;
+
                 IsRunning = true;
                 foreach ( CarWashState state in Rutine )
                 {
@@ -134,6 +140,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
                 }
                 currentTickCount = 0;
                 TimesRun++;
+                State = CarWashState.NotRunning;
                 await RunWashProcess ();
                 IsRunning = false;
             }
@@ -161,7 +168,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
                         return;
                     }
 
-                    if ( trueState == CarWashState.Proceeding || State == CarWashState.NotRunning )
+                    if ( !CancelSource.IsCancellationRequested && trueState == CarWashState.Proceeding || State == CarWashState.NotRunning )
                     {
                         trueState = Process (Rutine[ index++ ]);
                     }
@@ -212,6 +219,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             {
 
                 State = CarWashState.Aborted;
+                IsRunning = false;
                 return true;
             }
 
