@@ -172,13 +172,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
                     break;
                 case "wstandard":
                     ticket = Factory.CreateDefaultCarWashTicket ();
-                    ticket.SetProperty ("WashID", ticketInfo.Value);
+                    ticket.SetProperty ("CarWashID", ticketInfo.Value);
                     break;
                 default:
                     break;
             }
-
-            /*CreateParkingTicket(Common.Generics.Converter.CastGeneric<ValueType, int>(_value), 0);*/
 
             AddServiceItem (ticket);
 

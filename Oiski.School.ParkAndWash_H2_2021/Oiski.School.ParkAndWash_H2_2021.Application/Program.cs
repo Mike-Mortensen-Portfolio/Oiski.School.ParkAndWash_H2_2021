@@ -10,7 +10,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
 {
     class Program
     {
-        static void Main ( string[] args )
+        static void Main ()
         {
             #region Setting up Parking Spots
 
@@ -68,6 +68,29 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
             #region Setting up Ticket Service
             IMyService<IMyTicket> ticketService = Factory.CreateTicketService ();
             ParkAndWash.ServiceHandler.InjectService (ticketService);
+            #endregion
+
+            #region Setting up Car Wash Service
+            IMyService<IMyCarWash> carWashService = Factory.CreateCarWashService ();
+
+            if ( CarWashRepository.Link.GetEnumerable ().ToList ().Count <= 0 )
+            {
+                for ( int i = 0; i < 3; i++ )
+                {
+                    IMyCarWash wash = Factory.CreateCarWash ($"Facility {i}");
+                    carWashService.AddServiceItem (wash);
+                    CarWashRepository.Link.InsertData (wash as IMyRepositoryEntity<int, string>);
+                }
+            }
+            else
+            {
+                foreach ( IMyCarWash wash in CarWashRepository.Link.GetEnumerable () )
+                {
+                    carWashService.AddServiceItem (wash);
+                }
+            }
+
+            ParkAndWash.ServiceHandler.InjectService (carWashService);
             #endregion
 
             OiskiEngine.ChangeRenderer (new ColorRenderer ());

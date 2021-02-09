@@ -17,7 +17,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         /// <summary>
         /// Initialize a new istance of type <see cref="TicketScreen"/>
         /// </summary>
-        public TicketScreen () : base (50, 46, _enableBackButton: true, "Ticket")
+        private TicketScreen () : base (50, 46, _enableBackButton: true, "Ticket")
         {
             BackButton.OnSelect += ( s ) =>
              {
@@ -203,8 +203,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
             }
             else
             {
-                washIncludedLabel.Render = false;
-                washIncludedValue.Render = false;
+                spotFeeLabel.Render = false;
+                spotFeeValue.Render = false;
             }
             #endregion
 

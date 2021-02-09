@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.IO;
+using System.Globalization;
 
 namespace Oiski.School.ParkAndWash_H2_2021.Parking
 {
@@ -49,7 +50,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <returns>A <see langword="string"/> containing each property value for <see langword="this"/> instance, seperated by comma</returns>
         public string SaveEntity ()
         {
-            return $"ID{ID},{( int ) Type},{Occupied},{SpotFee}";
+            return $"ID{ID},{( int ) Type},{Occupied},{SpotFee.ToString(CultureInfo.CreateSpecificCulture ("en-GB"))}";
         }
 
         /// <summary>

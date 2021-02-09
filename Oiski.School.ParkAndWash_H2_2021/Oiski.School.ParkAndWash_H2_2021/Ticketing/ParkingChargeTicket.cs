@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -37,7 +38,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <returns>The current state of <see langword="this"/> <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> as an instance of type <typeparamref name="SaveType"/></returns>
         public override string SaveEntity ()
         {
-            return $"{base.SaveEntity ()},{ChargeCostPrKWH},{ChargedKWatt}";
+            return $"{base.SaveEntity ()},{ChargeCostPrKWH.ToString (CultureInfo.CreateSpecificCulture ("en-GB"))},{ChargedKWatt}";
         }
 
         /// <summary>
@@ -71,13 +72,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="ArrayTypeMismatchException"></exception>
         /// <exception cref="InvalidCastException"></exception>
         /// <exception cref="RankException"></exception>
-        public override KeyValuePair<string, object>[] GetTicketProperties ()
+        public override KeyValuePair<string, object>[] GetProperties ()
         {
-            int basePropertyCount = base.GetTicketProperties ().Length;
+            int basePropertyCount = base.GetProperties ().Length;
 
             KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[ basePropertyCount + 2 ];
 
-            base.GetTicketProperties ().CopyTo (properties, 0);
+            base.GetProperties ().CopyTo (properties, 0);
             properties[ basePropertyCount - 2 ] = KeyValuePair.Create ("ChargeCostPrKWH", ( object ) ParkingSpotID);
             properties[ basePropertyCount - 1 ] = KeyValuePair.Create ("ChargedKWatt", ( object ) OccupationStamp);
 

@@ -150,6 +150,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
                     default:
                         throw new ArgumentException ($"Type: {Converter.CastGeneric<ValueType, CarWashType> (_value)} is not valid in this context!");
                 }
+
+                return wash;
             }
 
             return null;
