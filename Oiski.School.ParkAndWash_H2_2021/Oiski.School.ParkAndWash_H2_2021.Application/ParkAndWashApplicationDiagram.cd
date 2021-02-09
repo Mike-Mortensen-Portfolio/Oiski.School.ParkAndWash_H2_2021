@@ -35,5 +35,12 @@
       <FileName>Interface\CarWashScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.StatisticsScreen">
+    <Position X="6.75" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAIIAAAAAAACCQAAFAAAAAQAAAAEAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Interface\StatisticsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -64,7 +64,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
 
             if ( wash != null )
             {
-                wash.CancelWash ();
+                wash.AbortWash ();
 
                 return true;
             }
@@ -133,24 +133,16 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <exception cref="InvalidCastException"></exception>
         public IMyCarWash RequestServiceItem<ValueType> ( ValueType _value )
         {
-            IMyCarWash wash = FindServiceItem (item => item.State == CarWashState.NotRunning);
+            IMyCarWash wash = FindServiceItem (item => item.IsRunning == false);
             if ( wash != null )
             {
-                switch ( Converter.CastGeneric<ValueType, CarWashType> (_value) )
+                wash.Rutine = ( Converter.CastGeneric<ValueType, CarWashType> (_value) ) switch
                 {
-                    case CarWashType.Gold:
-                        wash.Rutine = new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Blasting, CarWashState.Drying };
-                        break;
-                    case CarWashType.Silver:
-                        wash.Rutine = new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Blasting, CarWashState.Drying };
-                        break;
-                    case CarWashType.Bronze:
-                        wash.Rutine = new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Waxing, CarWashState.Blasting, CarWashState.Drying };
-                        break;
-                    default:
-                        throw new ArgumentException ($"Type: {Converter.CastGeneric<ValueType, CarWashType> (_value)} is not valid in this context!");
-                }
-
+                    CarWashType.Gold => new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Waxing, CarWashState.Blasting, CarWashState.Drying },
+                    CarWashType.Silver => new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Rinsing, CarWashState.Blasting, CarWashState.Drying },
+                    CarWashType.Bronze => new CarWashState[] { CarWashState.Soaping, CarWashState.Scrubbing, CarWashState.Blasting, CarWashState.Drying },
+                    _ => throw new ArgumentException ($"Type: {Converter.CastGeneric<ValueType, CarWashType> (_value)} is not valid in this context!"),
+                };
                 return wash;
             }
 

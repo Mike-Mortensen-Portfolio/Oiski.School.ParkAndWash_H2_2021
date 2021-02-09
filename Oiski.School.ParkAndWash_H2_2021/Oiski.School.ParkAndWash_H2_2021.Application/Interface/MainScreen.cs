@@ -1,6 +1,7 @@
 ﻿using Oiski.ConsoleTech.Engine;
 using Oiski.ConsoleTech.Engine.Color.Controls;
 using Oiski.ConsoleTech.Engine.Color.Rendering;
+using Oiski.School.ParkAndWash_H2_2021.Washing;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -78,7 +79,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
             toStatisticsSection.OnSelect += ( s ) =>
             {
-                //SwapScreen (Statistics.Screen);
+                SwapScreen (StatisticsScreen.Screen);
                 MarkTarget (s, _revert: true);
             };
 
