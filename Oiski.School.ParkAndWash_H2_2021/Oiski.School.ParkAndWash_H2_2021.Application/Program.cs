@@ -63,6 +63,12 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
 
             #region Setting up Ticket Service
             IMyService<IMyTicket> ticketService = Factory.CreateTicketService ();
+
+            foreach ( IMyTicket ticket in TicketRepository.Link.GetEnumerable () )
+            {
+                ticketService.AddServiceItem (ticket);
+            }
+
             ParkAndWash.ServiceHandler.InjectService (ticketService);
             #endregion
 

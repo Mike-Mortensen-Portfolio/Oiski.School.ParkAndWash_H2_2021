@@ -99,6 +99,86 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
             IMyParkingTicket pTicket = Ticket as IMyParkingTicket;
             IMyCarWashTicket wTicket = Ticket as IMyCarWashTicket;
 
+            #region Chargeable Station Value
+            if ( pTicket != null )
+            {
+                chargeableStationLabel.Render = true;
+                chargeableStationValue.Render = true;
+
+                chargeableStationValue.Text = ( pTicket.TicketType.Name == "ParkingChargeTicket" ).ToString ();
+                ColorBooleanValue (chargeableStationValue.Text, chargeableStationValue);
+            }
+            else
+            {
+                chargeableStationLabel.Render = false;
+                chargeableStationValue.Render = false;
+            }
+            #endregion
+
+            #region Wash Included Value
+            if ( pTicket != null )
+            {
+                washIncludedLabel.Render = true;
+                washIncludedValue.Render = true;
+
+                washIncludedValue.Text = ( pTicket.TicketType.Name == "ParkingWashTicket" ).ToString ();
+                ColorBooleanValue (washIncludedValue.Text, washIncludedValue);
+            }
+            else
+            {
+                washIncludedLabel.Render = false;
+                washIncludedValue.Render = false;
+            }
+            #endregion
+
+            #region Total Cost
+            if ( Finalize )
+            {
+                totalPriceLabel.Render = true;
+                totalPriceValue.Render = true;
+
+                if ( pTicket != null )
+                {
+                    spotFeeLabel.Render = true;
+                    spotFeeValue.Render = true;
+
+                    TimeSpan occupationTime = DateTime.Now - pTicket.OccupationStamp;
+
+                    if ( occupationTime.TotalHours >= 48 )
+                    {
+                        IMyParkingTicket oldTicket = Ticket as IMyParkingTicket;
+                        IMyTicket newTicket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PService", oldTicket.ParkingSpotID));
+                        newTicket.SetProperty ("OccupationStamp", oldTicket.OccupationStamp);
+                        newTicket.SetProperty ("OccupationPricePrHour", oldTicket.OccupationPricePrHour);
+                        newTicket.SetProperty ("ServiceType", "Basic Service Check");
+
+                        ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").CancelServiceItem (Ticket.ID);
+                        Ticket = newTicket;
+                        pTicket = newTicket as IMyParkingTicket;
+                    }
+
+                    decimal hourPrice = pTicket.OccupationPricePrHour * ( decimal ) occupationTime.TotalHours;
+                    decimal minutePrice = ( pTicket.OccupationPricePrHour / 60 ) * ( decimal ) occupationTime.TotalMinutes;
+                    decimal totalHourlyPrice = hourPrice + minutePrice;
+
+                    decimal spotFee = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyParkingSpot>> ("ParkingService").FindServiceItem (spot => spot.ID == pTicket.ParkingSpotID).SpotFee;
+                    decimal totalCost = totalHourlyPrice + spotFee;
+
+                    totalPriceValue.Text = $"{totalCost:00.00}DKK";
+                }
+                else if ( wTicket != null )
+                {
+                    totalPriceValue.Text = $"{wTicket.WashPrice:00.00}DKK";
+                }
+            }
+            else
+            {
+                totalPriceLabel.Render = false;
+                totalPriceValue.Render = false;
+            }
+
+            #endregion
+
             #region Ticket ID Value
             ticketIDValue.Text = Ticket.ID.ToString ();
             #endregion
@@ -133,38 +213,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
                 attachedEntityTypeLabel.Text = "Car Wash Type";
                 UpdateLabelPositionX (attachedEntityTypeValue, attachedEntityTypeLabel);
                 attachedEntityTypeValue.Text = wTicket.WashType.ToString ();
-            }
-            #endregion
-
-            #region Chargeable Station Value
-            if ( pTicket != null )
-            {
-                chargeableStationLabel.Render = true;
-                chargeableStationValue.Render = true;
-
-                chargeableStationValue.Text = ( pTicket.TicketType.Name == "ParkingChargeTicket" ).ToString ();
-                ColorBooleanValue (chargeableStationValue.Text, chargeableStationValue);
-            }
-            else
-            {
-                chargeableStationLabel.Render = false;
-                chargeableStationValue.Render = false;
-            }
-            #endregion
-
-            #region Wash Included Value
-            if ( pTicket != null )
-            {
-                washIncludedLabel.Render = true;
-                washIncludedValue.Render = true;
-
-                washIncludedValue.Text = ( pTicket.TicketType.Name == "ParkingWashTicket" ).ToString ();
-                ColorBooleanValue (washIncludedValue.Text, washIncludedValue);
-            }
-            else
-            {
-                washIncludedLabel.Render = false;
-                washIncludedValue.Render = false;
             }
             #endregion
 
@@ -212,41 +260,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
                 spotFeeLabel.Render = false;
                 spotFeeValue.Render = false;
             }
-            #endregion
-
-            #region Total Cost
-            if ( Finalize )
-            {
-                totalPriceLabel.Render = true;
-                totalPriceValue.Render = true;
-
-                if ( pTicket != null )
-                {
-                    spotFeeLabel.Render = true;
-                    spotFeeValue.Render = true;
-
-                    TimeSpan occupationTime = pTicket.OccupationStamp - DateTime.Now;
-
-                    decimal hourPrice = pTicket.OccupationPricePrHour * ( decimal ) occupationTime.TotalHours;
-                    decimal minutePrice = ( pTicket.OccupationPricePrHour / 60 ) * ( decimal ) occupationTime.TotalMinutes;
-                    decimal totalHourlyPrice = hourPrice + minutePrice;
-
-                    decimal spotFee = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyParkingSpot>> ("ParkingService").FindServiceItem (spot => spot.ID == pTicket.ParkingSpotID).SpotFee;
-                    decimal totalCost = totalHourlyPrice + spotFee;
-
-                    totalPriceValue.Text = $"{totalCost:00.00}DKK";
-                }
-                else if ( wTicket != null )
-                {
-                    totalPriceValue.Text = $"{wTicket.WashPrice:00.00}DKK";
-                }
-            }
-            else
-            {
-                totalPriceLabel.Render = false;
-                totalPriceValue.Render = false;
-            }
-
             #endregion
         }
 
@@ -425,7 +438,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
         public override void Show ( bool _visible = true )
         {
-            if ( _visible && Ticket != null )
+            if ( _visible )
             {
                 BackButton.Text = ( ( !Finalize ) ? ( "Back" ) : ( "Pay" ) );
 

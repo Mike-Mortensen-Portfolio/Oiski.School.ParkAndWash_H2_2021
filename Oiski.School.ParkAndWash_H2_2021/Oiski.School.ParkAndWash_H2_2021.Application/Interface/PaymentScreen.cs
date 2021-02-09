@@ -61,7 +61,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
             #region Ticket ID
             #region Label
             ColorableLabel ticketIDLabel = CreateControl<ColorableLabel> ("Ticket ID");
-            ticketIDLabel.Position = new Vector2 (5, Header.Position.y + Header.Size.y + 2);
+            ticketIDLabel.Position = new Vector2 (30, Header.Position.y + Header.Size.y + 7);
             #endregion
 
             #region Value

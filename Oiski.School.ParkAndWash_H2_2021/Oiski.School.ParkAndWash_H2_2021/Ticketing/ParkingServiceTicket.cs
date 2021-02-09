@@ -90,7 +90,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
                 {
                     switch ( _propertyName )
                     {
-                        case "ChargeCostPrKWH":
+                        case "ServiceType":
                             property = ServiceType;
                             ServiceType = ( string ) _value;
                             break;

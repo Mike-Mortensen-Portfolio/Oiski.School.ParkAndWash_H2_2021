@@ -386,32 +386,41 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
                     IMyTicket ticket = null;
 
-                    if ( chargeable )
+                    bool tryAgain = false;
+                    do
                     {
-                        ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PCharge", spot.ID));
-                    }
-                    else if ( includeCarWash )
-                    {
-                        ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PWash", spot.ID));
-                    }
-                    else
-                    {
-                        ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PStandard", spot.ID));
-                    }
+                        try
+                        {
+                            if ( chargeable )
+                            {
+                                ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PCharge", spot.ID));
+                            }
+                            else if ( includeCarWash )
+                            {
+                                ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PWash", spot.ID));
+                            }
+                            else
+                            {
+                                ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("PStandard", spot.ID));
+                            }
+
+                            tryAgain = false;
+                        }
+                        catch ( ServiceDuplicateException )
+                        {
+
+                            tryAgain = true;
+                        }
+
+                    } while ( tryAgain );
+
 
                     if ( ticket != null )
                     {
-                        if ( !TicketRepository.Link.InsertData (ticket as IMyRepositoryEntity<int, string>) )
-                        {
-                            TicketRepository.Link.DeleteData (ticket as IMyRepositoryEntity<int, string>);
-                            TicketRepository.Link.InsertData (ticket as IMyRepositoryEntity<int, string>);
-                        }
-                        if ( ParkingRepository.Link.UpdateData (spot as IMyRepositoryEntity<int, string>) )
-                        {
-                            TicketScreen.Screen.Ticket = ticket;
-                            SwapScreen (TicketScreen.Screen);
-                            MarkTarget (s, _revert: true);
-                        }
+                        TicketScreen.Screen.Finalize = false;
+                        TicketScreen.Screen.Ticket = ticket;
+                        SwapScreen (TicketScreen.Screen);
+                        MarkTarget (s, _revert: true);
                     }
                 }
             };

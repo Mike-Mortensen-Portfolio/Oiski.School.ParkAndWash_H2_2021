@@ -6,7 +6,7 @@ namespace Oiski.School.ParkAndWash_H2_2021
     /// <summary>
     /// The <see cref="Exception"/> that is thrown when a duplicate service instance is detected
     /// </summary>
-    internal class ServiceDuplicateException : Exception
+    public class ServiceDuplicateException : Exception
     {
         /// <summary>
         /// Creates a new instance of type <see cref="ServiceDuplicateException"/> where the exception message is set

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oiski.School.ParkAndWash_H2_2021.Parking;
+using System;
 using System.Collections.Generic;
 
 namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
@@ -65,7 +66,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 
             if ( ticket is IMyParkingTicket _pTicket )
             {
-                ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyParkingTicket>> ("ParkingService").CancelServiceItem (_pTicket.ParkingSpotID);
+                ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyParkingSpot>> ("ParkingService").CancelServiceItem (_pTicket.ParkingSpotID);
             }
 
             return RemoveServiceItem (ticket);
@@ -189,6 +190,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             }
 
             AddServiceItem (ticket);
+
+            if ( ticket is IMyParkingTicket _pTicket )
+            {
+                IMyParkingSpot spot = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyParkingSpot>> ("ParkingService").FindServiceItem (pSpot => pSpot.ID == ticketInfo.Value);
+                spot.Occupied = true;
+                ParkingRepository.Link.UpdateData (spot as IMyRepositoryEntity<int, string>);
+            }
 
             return ticket;
         }
