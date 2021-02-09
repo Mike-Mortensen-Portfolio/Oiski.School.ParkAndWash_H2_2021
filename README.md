@@ -220,6 +220,29 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Added `CarWashRepository` class
   - **Changes to `CarWash`**
     - Fixed a state save error
+- **[v0.13.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.13.0)**
+  - **Parking Inteface**
+    - Added a Main Screen with 3 options
+      - _Parking Service_
+      - _Car Wash Service_
+      - _Pay Ticket_
+    - Added a Parking Screen where requests for parking spots can be performed
+    - Added a Ticket Screen for displaying tickets
+    - Added a class diagram over the new interface system
+    - Added [OiskiEngine.dll](https://github.com/ZhakalenDk/Oiski.ConsoleTech.Engine) to make use of its advanced rendering functionality
+  - **Changes to `ParkingRepository`**
+    - Fixed `NullReferenceException`
+  - **Changes to `Parking Service`**
+    - Fixeed `ServiceDuplicateException`
+  - **Changes to `ParkingSpot`**
+    - Fixed missing ID counter
+  - **Changes to `IMyTicket`**
+    - Fixed bad description
+  - **Changes to `CarWash`**
+    - Fixed tick count not resetting between wash sessions
+  - **Changes to `CarWashRunningException`**
+    - Fixed misleading exception message
+
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
