@@ -323,6 +323,9 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Added Service modifier detection (_Applied = Time > 48_)
   - **Changes to `Program`**
     - Ability to load tickets from storage
+- **[v1.0.1 - Hotfix 1](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v1.0.1)**
+  - Fixed buffer issue
+  - Fixed a `CarWash` attempting to crerate a car wash with an ID that already exists
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
