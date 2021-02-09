@@ -242,6 +242,29 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Fixed tick count not resetting between wash sessions
   - **Changes to `CarWashRunningException`**
     - Fixed misleading exception message
+- **[v0.14.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.14.0)**
+  - **Car Wash Interface**
+    - Added `CarWashScreen`class
+    - Changed constructor for `BaseScreen` to protected
+    - Changed constructors of all derived `BaseScreen` instances to private
+    - Moved CombiSelect Method into `BaseScreen` class
+    - Added Statistics Button to `MainScreen` class
+    - Added setup of car wash service to application
+    - Added `CarWashScreen` class to diagram
+  - **Changes to `CarWashRepository`**
+    - Fixed UpdateDate always returning null
+  - **Changes to `CarWashService`**
+    - Fixed RequestServiceItem always returning null
+  - **Changes to Data Storage System**
+    - Fixed wrong data entry in `ParkinSpot`
+    - Fixed wrong data entry in `ParkinChargeTicket`
+    - Fixed wrong data entry in `ParkingTicket`
+  - **Changes to `IMyPropertyAccessor`**
+    - Fixed wrong method name
+  - **Changes to `TicketService`**
+    - Fixed wrong property ID when creating default was ticket
+  - **Changes to `TicketScreen`**
+    - Fixed spot fee label and value not being hidden
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
