@@ -22,7 +22,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         public int ID { get; protected set; }
         public Type TicketType { get; protected set; }
 
-        public abstract KeyValuePair<string, object>[] GetTicketProperties ();
+        public abstract KeyValuePair<string, object>[] GetProperties ();
 
         public abstract void SetProperty ( string _propertyName, object _value );
     }

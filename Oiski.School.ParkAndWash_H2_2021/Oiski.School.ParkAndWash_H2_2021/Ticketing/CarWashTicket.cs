@@ -1,6 +1,7 @@
 ﻿using Oiski.School.ParkAndWash_H2_2021.Washing;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -83,7 +84,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// Gets a collection of <see cref="KeyValuePair{TKey, TValue}"/> that represents the properties that are available to the <see cref="IMyPropertyAccessor"/> <see langword="interface"/>
         /// </summary>
         /// <returns>An <see cref="Array"/> of <see cref="KeyValuePair{TKey, TValue}"/> <see langword="objects"/> where <strong>key</strong> is the property name in <i>PascalCase</i></returns>
-        public override KeyValuePair<string, object>[] GetTicketProperties ()
+        public override KeyValuePair<string, object>[] GetProperties ()
         {
             KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[ 3 ];
 
@@ -100,7 +101,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <returns>The current state of <see langword="this"/> <see cref="IMyRepositoryEntity{IDType, SaveType}"/> <see langword="object"/> as an instance of type <typeparamref name="SaveType"/></returns>
         public string SaveEntity ()
         {
-            return $"Type{TicketType.FullName},ID{ID},{ CarWashID},{( int ) WashType},{WashPrice}";
+            return $"Type{TicketType.FullName},ID{ID},{ CarWashID},{( int ) WashType},{WashPrice.ToString (CultureInfo.CreateSpecificCulture ("en-GB"))}";
         }
 
         /// <summary>
@@ -131,7 +132,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
                         WashPrice = ( decimal ) _value;
                         break;
                     default:
-                        throw new PropertyNotFoundException<IMyParkingTicket> (GetTicketProperties ());
+                        throw new PropertyNotFoundException<IMyParkingTicket> (GetProperties ());
                 }
             }
             catch ( InvalidCastException _invalidException )

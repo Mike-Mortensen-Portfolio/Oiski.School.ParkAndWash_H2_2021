@@ -57,13 +57,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         /// <exception cref="ArrayTypeMismatchException"></exception>
         /// <exception cref="InvalidCastException"></exception>
         /// <exception cref="RankException"></exception>
-        public override KeyValuePair<string, object>[] GetTicketProperties ()
+        public override KeyValuePair<string, object>[] GetProperties ()
         {
-            int basePropertyCount = base.GetTicketProperties ().Length;
+            int basePropertyCount = base.GetProperties ().Length;
 
             KeyValuePair<string, object>[] properties = new KeyValuePair<string, object>[ basePropertyCount + 1 ];
 
-            base.GetTicketProperties ().CopyTo (properties, 0);
+            base.GetProperties ().CopyTo (properties, 0);
             properties[ basePropertyCount - 1 ] = KeyValuePair.Create ("ChargeCostPrKWH", ( object ) ParkingSpotID);
 
             return properties;

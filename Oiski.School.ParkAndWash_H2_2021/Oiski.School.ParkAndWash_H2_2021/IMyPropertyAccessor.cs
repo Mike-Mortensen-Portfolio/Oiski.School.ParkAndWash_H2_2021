@@ -20,6 +20,6 @@ namespace Oiski.School.ParkAndWash_H2_2021
         /// Gets a collection of <see cref="KeyValuePair{TKey, TValue}"/> that represents the properties that are available to the <see cref="IMyPropertyAccessor"/> <see langword="interface"/>
         /// </summary>
         /// <returns>An <see cref="Array"/> of <see cref="KeyValuePair{TKey, TValue}"/> <see langword="objects"/> where <strong>key</strong> is the property name in <i>PascalCase</i></returns>
-        KeyValuePair<string, object>[] GetTicketProperties ();
+        KeyValuePair<string, object>[] GetProperties ();
     }
 }

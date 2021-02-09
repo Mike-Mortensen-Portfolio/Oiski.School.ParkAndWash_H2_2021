@@ -20,7 +20,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         /// <param name="_height">The height of the <see cref="Console"/> window</param>
         /// <param name="_enableBackButton">Whether or not to render the screens back button</param>
         /// <param name="_headerText">The text of the header displayed on the screen. (<i><strong>Note: </strong> Leave as <see langword="null"/> to disable the header</i>)</param>
-        public BaseScreen ( int _width, int _height, bool _enableBackButton, string _headerText = null )
+        protected BaseScreen ( int _width, int _height, bool _enableBackButton, string _headerText = null )
         {
             MenuControl = new Menu ();
 
@@ -187,6 +187,24 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
             else
             {
                 _control.TextColor = new RenderColor (ConsoleColor.Green, ConsoleColor.Black);
+            }
+        }
+
+        /// <summary>
+        /// Will perform <see cref="BaseScreen.MarkTarget(Label, bool)"/> on <paramref name="_control"/> and <paramref name="_label"/>
+        /// </summary>
+        /// <param name="_control"></param>
+        /// <param name="_label"></param>
+        protected void CombiSelect ( Control _control, Label _label )
+        {
+
+            if ( _control is SelectableControl _sControl && _sControl.SelectedIndex == OiskiEngine.Input.GetSelectedIndex )
+            {
+                MarkTarget (_label);
+            }
+            else
+            {
+                MarkTarget (_label, _revert: true);
             }
         }
 

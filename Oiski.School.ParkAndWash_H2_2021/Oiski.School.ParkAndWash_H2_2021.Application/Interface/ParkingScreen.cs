@@ -20,7 +20,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         /// <summary>
         /// Initialize a new instance of type <see cref="ParkingScreen"/>
         /// </summary>
-        public ParkingScreen () : base (100, 30, _enableBackButton: true)
+        private ParkingScreen () : base (100, 30, _enableBackButton: true)
         {
             BackButton.OnSelect += ( s ) =>
             {
@@ -31,23 +31,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
             };
 
             BackButton.SelectedIndex = new Vector2 (0, BackButton.SelectedIndex.y - 1);
-        }
-
-        private static ParkingScreen screen = null;
-        /// <summary>
-        /// The access point for the screen properties
-        /// </summary>
-        public static ParkingScreen Screen
-        {
-            get
-            {
-                if ( screen == null )
-                {
-                    screen = new ParkingScreen ();
-                }
-
-                return screen;
-            }
         }
 
         /// <summary>
@@ -83,21 +66,20 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         /// </summary>
         private ColorableLabel handicapAmount;
 
+        private static ParkingScreen screen = null;
         /// <summary>
-        /// Will perform <see cref="BaseScreen.MarkTarget(Label, bool)"/> on <paramref name="_control"/> and <paramref name="_label"/>
+        /// The access point for the screen properties
         /// </summary>
-        /// <param name="_control"></param>
-        /// <param name="_label"></param>
-        private void CombiSelect ( Control _control, Label _label )
+        public static ParkingScreen Screen
         {
+            get
+            {
+                if ( screen == null )
+                {
+                    screen = new ParkingScreen ();
+                }
 
-            if ( _control is SelectableControl _sControl && _sControl.SelectedIndex == OiskiEngine.Input.GetSelectedIndex )
-            {
-                MarkTarget (_label);
-            }
-            else
-            {
-                MarkTarget (_label, _revert: true);
+                return screen;
             }
         }
 

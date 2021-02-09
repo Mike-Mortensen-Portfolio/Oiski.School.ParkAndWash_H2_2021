@@ -64,17 +64,31 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
             toWashingSection.OnSelect += ( s ) =>
             {
-                //  Go to Wash Menu
+                SwapScreen (CarWashScreen.Screen);
                 MarkTarget (s, _revert: true);
             };
 
             MenuControl.Controls.AddControl (toWashingSection);
             #endregion 
 
+            #region Statistics Button
+            ColorableOption toStatisticsSection = CreateControl<ColorableOption> ("Statistics");
+            toStatisticsSection.SelectedIndex = new Vector2 (0, 2);
+            toStatisticsSection.Position = new Vector2 (Vector2.CenterX (toStatisticsSection.Size.x), toWashingSection.Position.y + toWashingSection.Size.y);
+
+            toStatisticsSection.OnSelect += ( s ) =>
+            {
+                //SwapScreen (Statistics.Screen);
+                MarkTarget (s, _revert: true);
+            };
+
+            MenuControl.Controls.AddControl (toStatisticsSection);
+            #endregion 
+
             #region Payment Button
             ColorableOption toPaymentSection = CreateControl<ColorableOption> ("Pay Ticket");
-            toPaymentSection.SelectedIndex = new Vector2 (0, 2);
-            toPaymentSection.Position = new Vector2 (Vector2.CenterX (toPaymentSection.Size.x), toWashingSection.Position.y + toWashingSection.Size.y);
+            toPaymentSection.SelectedIndex = new Vector2 (0, 3);
+            toPaymentSection.Position = new Vector2 (Vector2.CenterX (toPaymentSection.Size.x), toStatisticsSection.Position.y + toStatisticsSection.Size.y);
 
             toPaymentSection.OnSelect += ( s ) =>
             {
