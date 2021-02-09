@@ -122,6 +122,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <summary>
         /// Begin the washing process
         /// </summary>
+        /// <exception cref="CarWashRunningException"></exception>
         public async void StartWashAsync ()
         {
             if ( !IsRunning )
@@ -131,6 +132,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
                 {
                     totalWashDuration += TimeSpan.FromMilliseconds (( int ) state).TotalSeconds;
                 }
+                currentTickCount = 0;
                 TimesRun++;
                 await RunWashProcess ();
                 IsRunning = false;

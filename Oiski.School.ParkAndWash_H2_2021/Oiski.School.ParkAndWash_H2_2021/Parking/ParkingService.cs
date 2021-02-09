@@ -42,12 +42,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="ServiceDuplicateException"></exception>
         public void AddServiceItem (IMyParkingSpot _item)
         {
-            if ( items.Find(spot => spot.ID == _item.ID) != null )
+            if ( items.Find(spot => spot.ID == _item.ID) == null )
             {
                 items.Add(_item);
             }
-
-            throw new ServiceDuplicateException($"An item with ID: {_item.ID} already exists in Parking Service");
+            else
+            {
+                throw new ServiceDuplicateException ($"An item with ID: {_item.ID} already exists in Parking Service");
+            }
         }
 
         /// <summary>

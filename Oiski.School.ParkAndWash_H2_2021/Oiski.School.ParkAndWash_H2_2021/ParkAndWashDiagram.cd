@@ -112,7 +112,7 @@
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Washing.CarWash">
     <Position X="38" Y="13.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAADAAACBAkAABAgAAQAQAAAAAAhAEQAAABABAAAA=</HashCode>
+      <HashCode>ACBAADAAACBIkAABAgAAQAQAAAAAAhAEQAAABABAAAA=</HashCode>
       <FileName>Washing\CarWash.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -213,7 +213,7 @@
   <Interface Name="Oiski.School.ParkAndWash_H2_2021.Washing.IMyCarWash">
     <Position X="38" Y="10.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAgAABAAAAQAQAAAAAABAEAAAABAAAAAA=</HashCode>
+      <HashCode>AABAAAAAACAAgAABAAAAQAQAAAAAABAEAAAABAAAAAA=</HashCode>
       <FileName>Washing\IMyCarWash.cs</FileName>
     </TypeIdentifier>
   </Interface>

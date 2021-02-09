@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Oiski.ConsoleTech.Engine">
+      <HintPath>..\..\..\..\..\Downloads\OiskiEngineV1.5.1-Hotfix\Oiski.ConsoleTech.Engine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
