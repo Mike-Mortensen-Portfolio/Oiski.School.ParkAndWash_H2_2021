@@ -155,7 +155,25 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
                 if ( wash != null )
                 {
-                    IMyTicket ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("wStandard", wash.ID));
+
+                    IMyTicket ticket = null;
+
+                    bool tryAgain = false;
+                    do
+                    {
+                        try
+                        {
+                            ticket = ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RequestServiceItem (KeyValuePair.Create ("wStandard", wash.ID));
+
+                            tryAgain = false;
+                        }
+                        catch ( ServiceDuplicateException )
+                        {
+
+                            tryAgain = true;
+                        }
+
+                    } while ( tryAgain );
 
                     if ( ticket != null )
                     {
@@ -176,18 +194,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
                         ticket.SetProperty ("WashPrice", price);
                         ticket.SetProperty ("WashType", washType);
-                        if ( !TicketRepository.Link.InsertData (ticket as IMyRepositoryEntity<int, string>) )
-                        {
-                            TicketRepository.Link.DeleteData (ticket as IMyRepositoryEntity<int, string>);
-                            TicketRepository.Link.InsertData (ticket as IMyRepositoryEntity<int, string>);
-                        }
-                        if ( CarWashRepository.Link.UpdateData (wash as IMyRepositoryEntity<int, string>) )
-                        {
-                            wash.StartWashAsync ();
-                            TicketScreen.Screen.Ticket = ticket;
-                            SwapScreen (TicketScreen.Screen);
-                            MarkTarget (s, _revert: true);
-                        }
+
+                        TicketScreen.Screen.Finalize = false;
+                        TicketScreen.Screen.Ticket = ticket;
+                        SwapScreen (TicketScreen.Screen);
+                        MarkTarget (s, _revert: true);
                     }
                 }
             };

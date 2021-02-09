@@ -382,8 +382,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
 
                 if ( spot != null )
                 {
-                    spot.Occupied = true;
-
                     IMyTicket ticket = null;
 
                     bool tryAgain = false;
