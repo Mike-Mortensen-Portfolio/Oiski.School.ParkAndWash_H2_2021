@@ -28,17 +28,21 @@ the occupation involves.
     - A Ticket that includes a car wash
     - A Ticket that includes a service check (_If a clients parking arrangements extends to at least 48 hours_)
   - **Car Wash**
-    - Specs to come...
+    - A Basic Car Wash Ticket
+    - 3 Car Wash Facilities
+    - Car Washes must be able to run simultaneously
 - **Data Storage**
   - The initial storage arrangement is agreed to be `.csv` files.
     - **Files**
       - `ParkingSpots.csv`
       - `Tickets.csv`
+      - `CarWashes.csv`
   - The storage arrangement may change, so in that regard the program must be open for such an event.
     in the we store data.
 - **Interface**
   - No specific requirements about layout
   - Must be able to show a client the amount of available parking spots within each type of spot.
+  - Must be able to show a client statistics about Car Washes
 
 ## The program
 The assignments states that the following criteria:
