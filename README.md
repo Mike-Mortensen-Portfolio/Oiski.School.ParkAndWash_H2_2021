@@ -305,6 +305,24 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to remove and delete tickets when they've been payed.
     - Fixed total price value not displaying as DKK
     - Back button text will now show "Pay" instead of "Back" when screen is in a finalizing state
+- **[v1.0.0 - Release](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v1.0.0)**
+  - Revision for Release State
+  - Changed `ServiceDuplicateException` to be public instead of internal
+  - **Changes to `ParkingServiceTicket`**
+    - Fixed wrong property identifier
+  - **Changes to `TicketService`**
+    - Fixed a crash due to cast mismatch when a parking ticket was canceled
+    - Added occupation logic when requesting a parking ticket
+  - **Changes to `ParkingScreen`**
+    + Fixed a crash when a ticket was attempted to be created when a ticket from storage with the ame ID already existed.
+  - **Changes to `PaymentScreen`**
+    - Adjusted postition of ID field
+  - **Changes to `TicketScreen`**
+    - Fixed an issue where the back button for the `TicketScreen` didn't reset to "Back" after a payment.
+    - Fixed an issue where the total cost wasn't calculated as it should.
+    - Added Service modifier detection (_Applied = Time > 48_)
+  - **Changes to `Program`**
+    - Ability to load tickets from storage
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
