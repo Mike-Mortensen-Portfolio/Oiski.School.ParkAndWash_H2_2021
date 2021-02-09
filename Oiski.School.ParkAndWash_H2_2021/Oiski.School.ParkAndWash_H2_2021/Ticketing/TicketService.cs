@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
 {
@@ -44,6 +43,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             if ( !ValidateServiceItem (_item.ID) )
             {
                 items.Add (_item);
+
+                TicketRepository.Link.InsertData (_item as IMyRepositoryEntity<int, string>);
             }
             else
             {
@@ -61,6 +62,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         public bool CancelServiceItem<IDType> ( IDType _itemID )
         {
             IMyTicket ticket = FindServiceItem (ticket => ticket.ID == Common.Generics.Converter.CastGeneric<IDType, int> (_itemID));
+
+            if ( ticket is IMyParkingTicket _pTicket )
+            {
+                ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyParkingTicket>> ("ParkingService").CancelServiceItem (_pTicket.ParkingSpotID);
+            }
 
             return RemoveServiceItem (ticket);
         }
@@ -96,7 +102,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             {
                 IMyTicket ticket = FindServiceItem (ticket => ticket.ID == _item.ID);
 
-                return items.Remove (ticket);
+                if ( items.Remove (ticket) )
+                {
+                    TicketRepository.Link.DeleteData (ticket as IMyRepositoryEntity<int, string>);
+                    return true;
+                }
             }
 
             return false;

@@ -25,7 +25,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
                     {
                         spot = Factory.CreateParkingSpot (SpotType.Handicap);
                         spot.SpotFee = 5M;
-                        ParkingRepository.Link.InsertData (spot as IMyRepositoryEntity<int, string>);
                         parkingService.AddServiceItem (spot);
                     }
 
@@ -33,7 +32,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
                     {
                         spot = Factory.CreateParkingSpot (SpotType.Large);
                         spot.SpotFee = 22M;
-                        ParkingRepository.Link.InsertData (spot as IMyRepositoryEntity<int, string>);
                         parkingService.AddServiceItem (spot);
                     }
 
@@ -41,7 +39,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
                     {
                         spot = Factory.CreateParkingSpot (SpotType.Util);
                         spot.SpotFee = 11M;
-                        ParkingRepository.Link.InsertData (spot as IMyRepositoryEntity<int, string>);
                         parkingService.AddServiceItem (spot);
                     }
 
@@ -49,7 +46,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
                     {
                         spot = Factory.CreateParkingSpot (SpotType.Standard);
                         spot.SpotFee = 18M;
-                        ParkingRepository.Link.InsertData (spot as IMyRepositoryEntity<int, string>);
                         parkingService.AddServiceItem (spot);
                     }
                 }
@@ -79,7 +75,6 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application
                 {
                     IMyCarWash wash = Factory.CreateCarWash ($"Facility {i}");
                     carWashService.AddServiceItem (wash);
-                    CarWashRepository.Link.InsertData (wash as IMyRepositoryEntity<int, string>);
                 }
             }
             else

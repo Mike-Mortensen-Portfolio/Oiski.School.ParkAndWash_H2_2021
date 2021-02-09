@@ -15,7 +15,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         public ParkingService ()
         {
-            items = new List<IMyParkingSpot>();
+            items = new List<IMyParkingSpot> ();
         }
 
         /// <summary>
@@ -40,11 +40,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <param name="_item"></param>
         /// <exception cref="ServiceDuplicateException"></exception>
-        public void AddServiceItem (IMyParkingSpot _item)
+        public void AddServiceItem ( IMyParkingSpot _item )
         {
-            if ( items.Find(spot => spot.ID == _item.ID) == null )
+            if ( items.Find (spot => spot.ID == _item.ID) == null )
             {
-                items.Add(_item);
+                items.Add (_item);
+
+                ParkingRepository.Link.InsertData (_item as IMyRepositoryEntity<int, string>);
             }
             else
             {
@@ -58,16 +60,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <typeparam name="IDType">Must be an <see langword="int"/> <see langword="value"/></typeparam>
         /// <param name="_itemID">The <see langword="int"/> ID <see langword="value"/></param>
         /// <returns><see langword="true"/> if the <see cref="IMyParkingSpot"/> exists and the occupation could be canceled; Otherwise <see langword="false"/></returns>
-        public bool CancelServiceItem<IDType> (IDType _itemID)
+        public bool CancelServiceItem<IDType> ( IDType _itemID )
         {
-
-            IMyParkingSpot spot = FindServiceItem(spot => spot.ID == Common.Generics.Converter.CastGeneric<IDType, int>(_itemID) && spot.Occupied == true);
+            IMyParkingSpot spot = FindServiceItem (spot => spot.ID == Common.Generics.Converter.CastGeneric<IDType, int> (_itemID) && spot.Occupied == true);
 
             if ( spot != null )
             {
                 spot.Occupied = false;
-
-                return true;
+                return ParkingRepository.Link.UpdateData (spot as IMyRepositoryEntity<int, string>);
             }
 
             return false;
@@ -78,9 +78,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <param name="_predicate"></param>
         /// <returns>The first occurence that matches the <paramref name="_predicate"/></returns>
-        public IMyParkingSpot FindServiceItem (Predicate<IMyParkingSpot> _predicate)
+        public IMyParkingSpot FindServiceItem ( Predicate<IMyParkingSpot> _predicate )
         {
-            return items.Find(_predicate);
+            return items.Find (_predicate);
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <param name="_predicate"></param>
         /// <returns>A collection of <see cref="IMyParkingSpot"/> where each item matches the <paramref name="_predicate"/></returns>
-        public IReadOnlyList<IMyParkingSpot> FindAllServiceItems (Predicate<IMyParkingSpot> _predicate)
+        public IReadOnlyList<IMyParkingSpot> FindAllServiceItems ( Predicate<IMyParkingSpot> _predicate )
         {
-            return items.FindAll(_predicate);
+            return items.FindAll (_predicate);
         }
 
         /// <summary>
@@ -98,13 +98,16 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <param name="_item"></param>
         /// <returns><see langword="true"/> if the item was found and removed; Otherwise <see langword="false"/></returns>
-        public bool RemoveServiceItem (IMyParkingSpot _item)
+        public bool RemoveServiceItem ( IMyParkingSpot _item )
         {
-            IMyParkingSpot spot = items.Find(spot => spot.ID == _item.ID);
+            IMyParkingSpot spot = items.Find (spot => spot.ID == _item.ID);
 
             if ( spot != null )
             {
-                return items.Remove(spot);
+                if ( items.Remove (spot) )
+                {
+                    return ParkingRepository.Link.DeleteData (spot as IMyRepositoryEntity<int, string>);
+                }
             }
 
             return false;
@@ -117,9 +120,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <param name="_value">The <see cref="SpotType"/> <see langword="value"/> of the requested <see cref="IMyParkingSpot"/></param>
         /// <returns>An <see cref="IMyParkingSpot"/> that is not occupied and matches the <see cref="SpotType"/> <paramref name="_value"/>; Otherwise <see langword="null"/></returns>
         /// <exception cref="InvalidCastException"></exception>
-        public IMyParkingSpot RequestServiceItem<ValueType> (ValueType _value)
+        public IMyParkingSpot RequestServiceItem<ValueType> ( ValueType _value )
         {
-            return FindServiceItem(spot => spot.Type == Common.Generics.Converter.CastGeneric<ValueType, SpotType>(_value) && spot.Occupied == false);
+            return FindServiceItem (spot => spot.Type == Common.Generics.Converter.CastGeneric<ValueType, SpotType> (_value) && spot.Occupied == false);
         }
 
         /// <summary>
@@ -129,9 +132,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <param name="_itemID">The <see langword="int"/> <see langword="value"/> that identifies the <see cref="IMyParkingSpot"/></param>
         /// <returns><see langword="true"/> if an <see langword="object"/> that matches the <paramref name="_itemID"/> is found; otherwise <see langword="false"/></returns>
         /// <exception cref="InvalidCastException"></exception>
-        public bool ValidateServiceItem<IDType> (IDType _itemID)
+        public bool ValidateServiceItem<IDType> ( IDType _itemID )
         {
-            if ( FindServiceItem(spot => spot.ID == Common.Generics.Converter.CastGeneric<IDType, int>(_itemID)) != null )
+            if ( FindServiceItem (spot => spot.ID == Common.Generics.Converter.CastGeneric<IDType, int> (_itemID)) != null )
             {
                 return true;
             }
@@ -144,9 +147,9 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         /// <param name="_newID"></param>
         /// <returns><see langword="true"/> if <paramref name="_newID"/> is not already an <see cref="IMyService{T}"/> identifier; Otherwise <see langword="false"/></returns>
-        public bool ChangeServiceID (string _newID)
+        public bool ChangeServiceID ( string _newID )
         {
-            if ( ParkAndWash.ServiceHandler[_newID] == null )
+            if ( ParkAndWash.ServiceHandler[ _newID ] == null )
             {
                 ServiceID = _newID;
 

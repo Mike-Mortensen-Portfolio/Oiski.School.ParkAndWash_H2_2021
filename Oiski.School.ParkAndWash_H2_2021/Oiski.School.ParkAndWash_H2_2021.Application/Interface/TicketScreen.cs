@@ -21,6 +21,12 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         {
             BackButton.OnSelect += ( s ) =>
              {
+                 if ( Finalize )
+                 {
+                     ParkAndWash.ServiceHandler.GetServiceAs<IMyService<IMyTicket>> ("TicketService").RemoveServiceItem (Ticket);
+                     TicketRepository.Link.DeleteData (Ticket as IMyRepositoryEntity<int, string>);
+                 }
+
                  SwapScreen (MainScreen.Screen);
                  MarkTarget (s, _revert: true);
              };
@@ -232,7 +238,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
                 }
                 else if ( wTicket != null )
                 {
-                    totalPriceValue.Text = $"{wTicket.WashPrice:00.00}";
+                    totalPriceValue.Text = $"{wTicket.WashPrice:00.00}DKK";
                 }
             }
             else
@@ -421,6 +427,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         {
             if ( _visible && Ticket != null )
             {
+                BackButton.Text = ( ( !Finalize ) ? ( "Back" ) : ( "Pay" ) );
+
                 UpdateValues ();
             }
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.BaseScreen">
-    <Position X="6.5" Y="0.5" Width="2.5" />
+    <Position X="8" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>BAIAIIACDAAAAAAAAAAFIEBABAAGQAABAAAAAAAgAAQ=</HashCode>
       <FileName>Interface\BaseScreen.cs</FileName>
@@ -22,14 +22,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.TicketScreen">
-    <Position X="13" Y="6.25" Width="2" />
+    <Position X="15.75" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AgIAABAIACBECAhGpAAAAAQAgIAEgSACBAgAAAAAAAE=</HashCode>
       <FileName>Interface\TicketScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.CarWashScreen">
-    <Position X="10" Y="6.25" Width="2" />
+    <Position X="12.75" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Interface\CarWashScreen.cs</FileName>
@@ -40,6 +40,13 @@
     <TypeIdentifier>
       <HashCode>gAIIAAAAAAACCQAAFAAAAAQAAAAEAAAAAAQAAAAAAAA=</HashCode>
       <FileName>Interface\StatisticsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.PaymentScreen">
+    <Position X="9.75" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Interface\PaymentScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
