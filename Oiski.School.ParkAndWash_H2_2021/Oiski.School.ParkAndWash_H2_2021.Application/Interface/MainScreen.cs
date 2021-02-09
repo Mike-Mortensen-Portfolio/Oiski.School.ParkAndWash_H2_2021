@@ -87,13 +87,13 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
             #endregion 
 
             #region Payment Button
-            ColorableOption toPaymentSection = CreateControl<ColorableOption> ("Pay Ticket");
+            ColorableOption toPaymentSection = CreateControl<ColorableOption> ("Payments");
             toPaymentSection.SelectedIndex = new Vector2 (0, 3);
             toPaymentSection.Position = new Vector2 (Vector2.CenterX (toPaymentSection.Size.x), toStatisticsSection.Position.y + toStatisticsSection.Size.y);
 
             toPaymentSection.OnSelect += ( s ) =>
             {
-                //  Go Payment Section
+                SwapScreen (PaymentScreen.Screen);
                 MarkTarget (s, _revert: true);
             };
 

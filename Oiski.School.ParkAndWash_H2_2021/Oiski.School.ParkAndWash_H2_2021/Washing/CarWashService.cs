@@ -45,6 +45,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             if ( FindServiceItem (item => item.ID == _item.ID) == null )
             {
                 items.Add (_item);
+
+                CarWashRepository.Link.InsertData (_item as IMyRepositoryEntity<int, string>);
             }
             else
             {
@@ -66,7 +68,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             {
                 wash.AbortWash ();
 
-                return true;
+                return CarWashRepository.Link.UpdateData (wash as IMyRepositoryEntity<int, string>);
             }
 
             return false;
@@ -116,8 +118,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
             IMyCarWash wash = items.Find (item => item.ID == _item.ID);
             if ( wash != null )
             {
-                items.Remove (wash);
-                return true;
+                if ( items.Remove (wash) )
+                {
+                    return CarWashRepository.Link.DeleteData (_item as IMyRepositoryEntity<int, string>);
+                }
             }
 
             return false;
