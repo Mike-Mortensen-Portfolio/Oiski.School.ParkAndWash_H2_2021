@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.BaseScreen">
+    <Position X="6.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAIAIIAADAAAAAAAAAAFIEBABAAGQAABAAAAAAAgAAA=</HashCode>
+      <FileName>Interface\BaseScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.MainScreen">
+    <Position X="6.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\MainScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.ParkingScreen">
+    <Position X="3.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAACAAQAAAAQBAEAECUABAAEgAQAAAAAAAAAAAw=</HashCode>
+      <FileName>Interface\ParkingScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.ParkAndWash_H2_2021.Application.Interface.TicketScreen">
+    <Position X="9.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgIAABAIACBECAhGpAAAAAQAgIAEgSACBAgAAAAAAAU=</HashCode>
+      <FileName>Interface\TicketScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

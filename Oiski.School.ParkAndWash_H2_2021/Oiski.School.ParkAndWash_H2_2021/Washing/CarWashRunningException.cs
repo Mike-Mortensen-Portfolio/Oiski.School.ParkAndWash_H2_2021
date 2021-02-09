@@ -39,7 +39,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Washing
         /// <param name="_progress"></param>
         public CarWashRunningException ( string _message, CarWashState _state, double _progress )
         {
-            Message = $"{_message} - Current State: {_state}. Current process progression: {_progress:0.00}%";
+            Message = $"{_message} - Current State: {_state}. Total progression: {_progress:0.00}%";
         }
     }
 }

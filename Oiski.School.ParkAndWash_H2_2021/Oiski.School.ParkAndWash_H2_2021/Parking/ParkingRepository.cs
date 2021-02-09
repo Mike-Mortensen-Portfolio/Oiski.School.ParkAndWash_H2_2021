@@ -18,7 +18,7 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// </summary>
         private ParkingRepository ()
         {
-            file = new FileHandler(filePath);
+            file = new FileHandler (filePath);
         }
 
         private static ParkingRepository link = null;
@@ -33,14 +33,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
             {
                 if ( link == null )
                 {
-                    link = new ParkingRepository();
+                    link = new ParkingRepository ();
                 }
 
                 return link;
             }
         }
 
-        private readonly string filePath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\ParkingSpots.csv";
+        private readonly string filePath = $"{Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location)}\\ParkingSpots.csv";
 
         /// <summary>
         /// Delete an <see cref="IMyParkingSpot"/> entry in <strong>data storage</strong>
@@ -62,11 +62,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="PathTooLongException"></exception>
         /// <exception cref="System.Security.SecurityException"></exception>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        public bool DeleteData<IDType> (IMyRepositoryEntity<IDType, string> _entity)
+        public bool DeleteData<IDType> ( IMyRepositoryEntity<IDType, string> _entity )
         {
-            if ( GetDataByIdentifier(_entity.ID) != null )
+            if ( GetDataByIdentifier (_entity.ID) != null )
             {
-                file.DeleteLine(file.GetLineNumber(file.FindLine(_entity.ID.ToString())));
+                file.DeleteLine (file.GetLineNumber (file.FindLine (_entity.ID.ToString ())));
                 return true;
             }
 
@@ -86,14 +86,14 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="InvalidCastException"></exception>
         /// <exception cref="IOException"></exception>
         /// <exception cref="OutOfMemoryException"></exception>
-        public IMyParkingSpot GetDataByIdentifier<IDType> (IDType _id)
+        public IMyParkingSpot GetDataByIdentifier<IDType> ( IDType _id )
         {
-            string data = file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_id)}");
+            string data = file.FindLine ($"ID{Common.Generics.Converter.CastGeneric<IDType, int> (_id)}");
 
             if ( data != null )
             {
-                IMyParkingSpot spot = Factory.CreateDefaultParkingSpot();
-                ( ( IMyRepositoryEntity<int, string> ) spot ).BuildEntity(data);
+                IMyParkingSpot spot = Factory.CreateDefaultParkingSpot ();
+                ( ( IMyRepositoryEntity<int, string> ) spot ).BuildEntity (data);
                 return spot;
             }
 
@@ -113,14 +113,17 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="OutOfMemoryException"></exception>
         public IEnumerable<IMyParkingSpot> GetEnumerable ()
         {
-            List<IMyParkingSpot> spots = new List<IMyParkingSpot>();
+            List<IMyParkingSpot> spots = new List<IMyParkingSpot> ();
 
-            foreach ( string data in file.ReadLines() )
+            foreach ( string data in file.ReadLines () )
             {
-                IMyRepositoryEntity<int, string> spot = Factory.CreateDefaultParkingSpot() as IMyRepositoryEntity<int, string>;
-                spot.BuildEntity(data);
+                if ( !string.IsNullOrEmpty (data) )
+                {
+                    IMyRepositoryEntity<int, string> spot = Factory.CreateDefaultParkingSpot () as IMyRepositoryEntity<int, string>;
+                    spot.BuildEntity (data);
 
-                spots.Add(spot as IMyParkingSpot);
+                    spots.Add (spot as IMyParkingSpot);
+                }
             }
 
             return spots;
@@ -141,11 +144,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="PathTooLongException"></exception>
         /// <exception cref="System.Security.SecurityException"></exception>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        public bool InsertData<IDType> (IMyRepositoryEntity<IDType, string> _data)
+        public bool InsertData<IDType> ( IMyRepositoryEntity<IDType, string> _data )
         {
-            if ( GetDataByIdentifier(_data.ID) == null )
+            if ( GetDataByIdentifier (_data.ID) == null )
             {
-                file.WriteLine(_data.SaveEntity(), true);
+                file.WriteLine (_data.SaveEntity (), true);
 
                 return true;
             }
@@ -172,11 +175,12 @@ namespace Oiski.School.ParkAndWash_H2_2021.Parking
         /// <exception cref="PathTooLongException"></exception>
         /// <exception cref="System.Security.SecurityException"></exception>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        public bool UpdateData<IDType> (IMyRepositoryEntity<IDType, string> _data)
+        public bool UpdateData<IDType> ( IMyRepositoryEntity<IDType, string> _data )
         {
-            if ( GetDataByIdentifier(_data.ID) != null )
+            if ( !string.IsNullOrWhiteSpace (file.FindLine ($"ID{_data.ID}")) )
             {
-                file.UpdateLine(_data.SaveEntity(), file.GetLineNumber(file.FindLine($"ID{Common.Generics.Converter.CastGeneric<IDType, int>(_data.ID)}")));
+                file.UpdateLine (_data.SaveEntity (), file.GetLineNumber (file.FindLine ($"ID{Common.Generics.Converter.CastGeneric<IDType, int> (_data.ID)}")));
+                return true;
             }
 
             return false;
