@@ -276,16 +276,35 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Ability to display state for each car wash
     - Ability to cancel each car wash
     - Added `StatisticsScreen` class to diagram
-
   - **Changes to `CarWash`**
     - Fixed an issue where the car wash coulnd't be started after it was previously completed
     - Fixed an issue where an aborted car wash would continue to be aborted, even after starting a new wash.
-
   - **Changes to `CarWashService`**
     - Fixed an issue where a CarWash would get the wrong wash rutine
-
   - **Changes to `IMyCarWash`**
     - Renamed CancelWash to AbortWash
+- **[v0.16.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.16.0)**
+  - **Implemented `PaymentScreen`**
+    - Added `PaymentScreen` class
+    - Display finalized data for a ticket
+    - Added `PaymentScreen` to diagram
+  - **Changes to `ParkingService`**
+    - Added data storing to AddServiceItem
+    - Added data storing to CancelServiceItem
+    - Added data storing to RemoveServiceItem
+  - **Changes to `Program`**
+    - Removed Repository calls for parking spots and car washes
+  - **Changes to `TicketService`**
+    - Added data storing to AddServiceItem
+    - Added data storing to CancelServiceItem
+    - Added data storing to RemoveServiceItem
+  - **Changes to `CarWashService`**
+    - Added data storing to AddServiceItem
+    - Added data storing to RemoveServiceItem
+  - **Changes to `TicketScreen`**
+    - Ability to remove and delete tickets when they've been payed.
+    - Fixed total price value not displaying as DKK
+    - Back button text will now show "Pay" instead of "Back" when screen is in a finalizing state
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
