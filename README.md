@@ -269,6 +269,23 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
     - Fixed wrong property ID when creating default was ticket
   - **Changes to `TicketScreen`**
     - Fixed spot fee label and value not being hidden
+- **[v0.15.0](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v0.15.0)**
+  - **Implemented `StatisticsScreen`**
+    - Ability to display amount of runs for each car wash
+    - Ability to display progress for each car wash
+    - Ability to display state for each car wash
+    - Ability to cancel each car wash
+    - Added `StatisticsScreen` class to diagram
+
+  - **Changes to `CarWash`**
+    - Fixed an issue where the car wash coulnd't be started after it was previously completed
+    - Fixed an issue where an aborted car wash would continue to be aborted, even after starting a new wash.
+
+  - **Changes to `CarWashService`**
+    - Fixed an issue where a CarWash would get the wrong wash rutine
+
+  - **Changes to `IMyCarWash`**
+    - Renamed CancelWash to AbortWash
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
