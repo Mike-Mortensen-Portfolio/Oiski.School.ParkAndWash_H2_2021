@@ -48,13 +48,14 @@ the occupation involves.
 The assignments states that the following criteria:
 
 **Goal**
->Implement OOP Principles (_Solid_) in a user-relevant context.
+>Implement OOP Principles (_Solid_) in a user-relevant context, as well as extend and demonstrate ones capabilities within the relevant topics of the course.
+>
 
 **Input**
-> Description needed...
+> The application features a navigational UI system that let's the user interact with the different parts system.
 
 **Output**
-> Description needed...
+> The program generates no direct output other than the UI elements displayed in the console window. However, it generates 3 `.csv` files as described above.
 
 See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/wiki) for more in depth information about the project.
 
