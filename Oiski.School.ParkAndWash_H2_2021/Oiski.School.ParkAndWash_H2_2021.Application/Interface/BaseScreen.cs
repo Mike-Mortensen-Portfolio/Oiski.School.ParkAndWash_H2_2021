@@ -167,10 +167,16 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
         /// <param name="_height">The height of the screen</param>
         protected void SetScreenSize ( int _width, int _height )
         {
+            Console.SetWindowSize (1, 1);
+            //Console.SetBufferSize (_width + 1, _height + 1);
             Console.SetWindowSize (_width, _height);
-            Console.SetBufferSize (_width + 1, _height + 1);
-
             OiskiEngine.Configuration.Size = new Vector2 (_width, _height);
+
+            if ( Console.WindowWidth != _width || Console.WindowHeight != _height )
+            {
+                Console.SetWindowSize (_width, _height);
+            }
+
         }
 
         /// <summary>

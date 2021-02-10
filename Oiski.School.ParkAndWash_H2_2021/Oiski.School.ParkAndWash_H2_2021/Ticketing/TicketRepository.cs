@@ -179,6 +179,8 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
             if ( !string.IsNullOrWhiteSpace (file.FindLine ($"ID{_data.ID}")) )
             {
                 file.UpdateLine (_data.SaveEntity (), file.GetLineNumber (file.FindLine ($"ID{Common.Generics.Converter.CastGeneric<IDType, int> (_data.ID)}")));
+
+                return true;
             }
 
             return false;

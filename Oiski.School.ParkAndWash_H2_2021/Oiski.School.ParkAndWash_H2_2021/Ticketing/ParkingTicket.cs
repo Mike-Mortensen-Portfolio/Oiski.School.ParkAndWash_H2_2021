@@ -64,11 +64,11 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         {
             string[] values = _values.Split (",");
 
-            if ( int.TryParse (values[ 1 ].Replace ("ID", string.Empty), out int _id) && DateTime.TryParse (values[ 2 ], out DateTime _stamp) && decimal.TryParse (values[ 3 ], out decimal _spotFee) && int.TryParse (values[ 4 ], out int _spotID) )
+            if ( int.TryParse (values[ 1 ].Replace ("ID", string.Empty), out int _id) && DateTime.TryParse (values[ 2 ], out DateTime _stamp) && decimal.TryParse (values[ 3 ].Replace (".", ","), out decimal _pricePrHour) && int.TryParse (values[ 4 ], out int _spotID) )
             {
                 this.ID = _id;
                 this.OccupationStamp = _stamp;
-                this.OccupationPricePrHour = _spotFee;
+                this.OccupationPricePrHour = _pricePrHour;
                 this.ParkingSpotID = _spotID;
             }
             else
