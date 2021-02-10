@@ -68,9 +68,10 @@ namespace Oiski.School.ParkAndWash_H2_2021.Ticketing
         {
             string[] values = _data.Split (",");
 
-            if ( int.TryParse (values[ 1 ].Replace ("ID", string.Empty), out int _id) && int.TryParse (values[ 2 ], out int _type) && decimal.TryParse (values[ 3 ], out decimal _price) )
+            if ( int.TryParse (values[ 1 ].Replace ("ID", string.Empty), out int _id) && int.TryParse (values[ 2 ], out int _washID) && int.TryParse (values[ 3 ], out int _type) && decimal.TryParse (values[ 4 ].Replace (".", ","), out decimal _price) )
             {
                 this.ID = _id;
+                CarWashID = _washID;
                 WashType = ( CarWashType ) _type;
                 WashPrice = _price;
             }

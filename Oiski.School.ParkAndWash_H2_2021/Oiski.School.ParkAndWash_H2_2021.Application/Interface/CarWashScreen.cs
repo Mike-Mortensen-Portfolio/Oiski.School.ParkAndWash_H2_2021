@@ -195,10 +195,15 @@ namespace Oiski.School.ParkAndWash_H2_2021.Application.Interface
                         ticket.SetProperty ("WashPrice", price);
                         ticket.SetProperty ("WashType", washType);
 
-                        TicketScreen.Screen.Finalize = false;
-                        TicketScreen.Screen.Ticket = ticket;
-                        SwapScreen (TicketScreen.Screen);
-                        MarkTarget (s, _revert: true);
+                        if ( TicketRepository.Link.UpdateData (ticket as IMyRepositoryEntity<int, string>) )
+                        {
+                            wash.StartWashAsync ();
+
+                            TicketScreen.Screen.Finalize = false;
+                            TicketScreen.Screen.Ticket = ticket;
+                            SwapScreen (TicketScreen.Screen);
+                            MarkTarget (s, _revert: true);
+                        }
                     }
                 }
             };
