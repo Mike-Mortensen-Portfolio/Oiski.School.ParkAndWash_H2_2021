@@ -327,6 +327,12 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
 - **[v1.0.1 - Hotfix 1](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v1.0.1)**
   - Fixed buffer issue
   - Fixed a `CarWash` attempting to crerate a car wash with an ID that already exists
+- **[v1.0.2 - Hotfix 2](https://github.com/ZhakalenDk/Oiski.School.ParkAndWash_H2_2021/releases/tag/v1.0.2)
+  - Fixed parking spots not building with the right decimal value
+  - Fixed car washes missing a wash ID after being build from storage
+  - Fixed `TicketRepository.UpdateData` always returning false
+  - Fixed buffer mismatch
+  - Fixed not being able to start a car wash after a tiocket was generated for it
 
 ## Oiski.School Namespace Collection
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
