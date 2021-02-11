@@ -334,7 +334,7 @@ The syntax for the structure of folders must be presented as: [DeveloperName]/[V
   - Fixed buffer mismatch
   - Fixed not being able to start a car wash after a tiocket was generated for it
 
-## Oiski.School Namespace Collection
+## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
 1. [Oiski.School.Library_h1_2020](https://github.com/ZhakalenDk/Oiski.School.Library_H1_2020)
 2. [Oiski.School.Bank_H1_2020](https://github.com/ZhakalenDk/Oiski.School.Bank_H1_2020)
 3. [Oiski.School.RainStatistic_H2_2021](https://github.com/ZhakalenDk/Oiski.School.RainStatistic_H2_2021)
