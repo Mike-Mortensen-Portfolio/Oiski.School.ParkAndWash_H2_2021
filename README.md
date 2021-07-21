@@ -1,7 +1,15 @@
 # Oiski's Park'n Wash
 
 ## About The Project
-This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments.
+This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments. \
+
+
+## Dependencies
+Requires [Oiski.ConsoleTech (v1.5.1)](https://github.com/ZhakalenDk/Oiski.ConsoleTech.Engine/releases/download/v1.5.1/OiskiEngineV1.5.1-Hotfix.zip) to run!
+
+### How To
+Unzip the file and place Oiski.ConsoleTech.Engine.dlll and Oiski.ConsoleTech.Engine.xml inside _Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021.Application_
+
 
 ### Terms of Development
 `Park 'N Wash` needs us to build a system that can keep track of parking arrangements and is open for further extensions if necessary.
