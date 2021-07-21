@@ -10,6 +10,8 @@ Requires [Oiski.ConsoleTech (v1.5.1)](https://github.com/ZhakalenDk/Oiski.Consol
 ### How To
 Unzip the file and place Oiski.ConsoleTech.Engine.dlll and Oiski.ConsoleTech.Engine.xml inside _Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021\Oiski.School.ParkAndWash_H2_2021.Application_
 
+**Note:** There's an issue with the [OiskiEngine](https://github.com/ZhakalenDk/Oiski.ConsoleTech.Engine/tree/v1.5.1) that reports an `IndexOutOfBoundsException` that will crash the program. This is a known issue, however, the engine is no longer being developed and the issue was never fixed.
+if this occurs, simply run the program again (_Shouldn't happen more than once or twice during the showcase_).
 
 ### Terms of Development
 `Park 'N Wash` needs us to build a system that can keep track of parking arrangements and is open for further extensions if necessary.
