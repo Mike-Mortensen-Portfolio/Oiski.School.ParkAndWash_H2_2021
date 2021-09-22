@@ -1,7 +1,7 @@
 # Oiski's Park'n Wash
 
 ## About The Project
-This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments. \
+This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments.
 
 
 ## Dependencies
